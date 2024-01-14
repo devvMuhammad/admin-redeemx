@@ -1,4 +1,6 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Key } from "react";
 
 type Links = {
@@ -7,12 +9,15 @@ type Links = {
 }[];
 
 export default function Sidebar() {
+  const pathname = usePathname();
+  console.log(pathname);
   const Links: Links = [
     { name: "Overview", link: "overview" },
     { name: "Products", link: "products" },
     { name: "Graphs", link: "graphs" },
     { name: "Settings", link: "settings" },
   ];
+
   return (
     <div className="py-8 flex flex-col gap-10 items-center border-r border-solid border-white">
       {/* HEADING */}
@@ -23,7 +28,9 @@ export default function Sidebar() {
           <Link
             key={link}
             href={`/${link}`}
-            className="text-xl font-bold bg-gray-400 px-8 rounded-md py-2"
+            className={`text-xl font-bold px-8 rounded-md py-2 transition-all duration-200 ease-linear ${
+              pathname === `/${link}` && "bg-gray-400"
+            }`}
           >
             {name}
           </Link>
