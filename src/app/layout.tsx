@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
 import Sidebar from "@/components/Sidebar";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({ weight: "400", style: "normal", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +18,9 @@ type LayoutProps = {
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
-      <body className="h-screen grid grid-rows-1 grid-cols-[1fr_5fr]">
+      <body
+        className={`${poppins.className} h-screen grid grid-rows-1 grid-cols-[1fr_5fr]`}
+      >
         {/* SIDEBAR COMPONENT */}
         <Sidebar />
         <div>{children}</div>
