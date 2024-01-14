@@ -12,9 +12,10 @@ export default function Sidebar() {
   const pathname = usePathname();
   console.log(pathname);
   const Links: Links = [
-    { name: "Overview", link: "overview" },
-    { name: "Products", link: "products" },
-    { name: "Graphs", link: "graphs" },
+    { name: "Dashboard", link: "dashboard" },
+    { name: "Inventory", link: "inventory" },
+    { name: "Orders", link: "orders" },
+    { name: "Analytics", link: "analytics" },
     { name: "Settings", link: "settings" },
   ];
 
