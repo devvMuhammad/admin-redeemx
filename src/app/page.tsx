@@ -1,3 +1,7 @@
 export default function Home() {
-  return <p>Dashboard</p>;
+  return (
+    <section>
+      <h1>This is the dashboard page </h1>
+    </section>
+  );
 }
