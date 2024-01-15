@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "./globals.css";
 import { ReactNode } from "react";
 import Sidebar from "@/components/Sidebar";
+import "./globals.css";
+import Header from "@/components/Header";
 
 const poppins = Poppins({
   weight: ["400", "600"],
@@ -23,11 +24,14 @@ export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} h-screen grid grid-rows-1 grid-cols-[1fr_5fr]`}
+        className={`${poppins.className} bg-black text-white h-screen grid grid-rows-1 grid-cols-[1fr_5fr]`}
       >
         {/* SIDEBAR COMPONENT */}
         <Sidebar />
-        <div>{children}</div>
+        <main className="p-6 space-y-8">
+          <Header />
+          {children}
+        </main>
       </body>
     </html>
   );
