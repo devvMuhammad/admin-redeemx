@@ -4,7 +4,11 @@ import "./globals.css";
 import { ReactNode } from "react";
 import Sidebar from "@/components/Sidebar";
 
-const poppins = Poppins({ weight: "400", style: "normal", subsets: ["latin"] });
+const poppins = Poppins({
+  weight: ["400", "600"],
+  style: "normal",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",

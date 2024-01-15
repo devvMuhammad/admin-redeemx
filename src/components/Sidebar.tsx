@@ -1,4 +1,11 @@
 "use client";
+import {
+  BarChartBigIcon,
+  CircleDollarSignIcon,
+  LayoutDashboardIcon,
+  LucideUserRoundCog,
+  PackageSearchIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Key } from "react";
@@ -6,36 +13,40 @@ import { Key } from "react";
 type Links = {
   name: String;
   link: String & Key;
+  icon: React.JSX.Element;
 }[];
 
 export default function Sidebar() {
   const pathname = usePathname();
   console.log(pathname);
   const Links: Links = [
-    { name: "Dashboard", link: "dashboard" },
-    { name: "Inventory", link: "inventory" },
-    { name: "Orders", link: "orders" },
-    { name: "Analytics", link: "analytics" },
-    { name: "Settings", link: "settings" },
+    { name: "Dashboard", link: "", icon: <LayoutDashboardIcon /> },
+    { name: "Inventory", link: "inventory", icon: <PackageSearchIcon /> },
+    { name: "Orders", link: "orders", icon: <CircleDollarSignIcon /> },
+    { name: "Analytics", link: "analytics", icon: <BarChartBigIcon /> },
+    { name: "Settings", link: "settings", icon: <LucideUserRoundCog /> },
   ];
 
   return (
-    <div className="py-8 flex flex-col gap-10 items-center border-r border-solid border-white">
+    <div className="py-8 flex flex-col gap-10 items-center border-r border-solid border-slate-400">
       {/* HEADING */}
-      <h1 className="font-bold text-4xl tracking-wide">RedeemX</h1>
+      <h1 className="font-extrabold text-4xl tracking-tighter">RedeemX</h1>
       {/* LINKS */}
       <div className="flex flex-col gap-2 ">
-        {Links.map(({ name, link }) => (
+        {/* <div className="flex gap-2 justify-between"> */}
+        {Links.map(({ name, link, icon }) => (
           <Link
             key={link}
             href={`/${link}`}
-            className={`text-xl font-bold px-8 rounded-md py-2 transition-all duration-200 ease-linear ${
-              pathname === `/${link}` && "bg-gray-400"
+            className={`flex gap-4 px-6 rounded-md py-3 transition-all duration-200 ease-linear ${
+              pathname === `/${link}` && "bg-slate-400"
             }`}
           >
+            {icon}
             {name}
           </Link>
         ))}
+        {/* </div> */}
       </div>
     </div>
   );
