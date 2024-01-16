@@ -18,7 +18,6 @@ type Links = {
 
 export default function Sidebar() {
   const pathname = usePathname();
-  console.log(pathname);
   const Links: Links = [
     { name: "Dashboard", link: "", icon: <LayoutDashboardIcon /> },
     { name: "Inventory", link: "inventory", icon: <PackageSearchIcon /> },
