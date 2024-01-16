@@ -1,4 +1,4 @@
-import { BellIcon } from "lucide-react";
+import { BellDot, BellDotIcon, BellIcon } from "lucide-react";
 import SectionName from "./SectionName";
 
 export default function Header() {
@@ -14,8 +14,8 @@ export default function Header() {
         <p className="text-grey">{date}</p>
       </div>
       <div className="flex gap-4 items-center">
-        <div className="cursor-pointer w-10 h-10 flex items-center justify-center p-1 border-2 rounded-full hover:bg-white hover:text-black">
-          <BellIcon className="h-5 w-5" />
+        <div className="cursor-pointer w-10 h-10 flex items-center justify-center p-1 border rounded-full hover:bg-white hover:text-black">
+          <BellDotIcon className="h-5 w-5" />
         </div>
         <div className="cursor-pointer w-10 h-10 bg-white rounded-full"></div>
         <div>
