@@ -11,8 +11,8 @@ import { usePathname } from "next/navigation";
 import { Key } from "react";
 
 type Links = {
-  name: String;
-  link: String & Key;
+  name: string;
+  link: string & Key;
   icon: React.JSX.Element;
 }[];
 
