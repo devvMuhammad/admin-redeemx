@@ -19,14 +19,17 @@ const data: ChartData<"doughnut", number[], unknown> = {
 export default function PieChart() {
   ChartJS.register(ArcElement, Tooltip, Legend);
   return (
-    <div className="flex items-center justify-center">
+    <div className="space-y-2">
+      <h1 className="font-bold tracking-tight text-center pl-4">
+        Sales by category
+      </h1>
       <Doughnut
-        className="fixed"
+        // className="fixed"
         data={data}
         options={{
           plugins: {
             legend: {
-              labels: { color: "white", font: { size: 16 } },
+              labels: { color: "white", font: { size: 14 } },
               position: "top",
             },
           },
