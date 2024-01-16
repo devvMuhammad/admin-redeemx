@@ -1,3 +1,4 @@
+import { ArrowDownRightIcon, ArrowUpRightIcon } from "lucide-react";
 import Badge from "../ui/Badge";
 
 type InfoCardProps = {
@@ -16,10 +17,18 @@ export default function InfoCard({
   icon,
 }: InfoCardProps) {
   return (
-    <div className="flex flex-col p-5 border border-white rounded-3xl">
+    <div className="p-5 border border-white rounded-3xl">
       <div className="flex justify-between items-center">
         <div className="bg-gray-700 p-3 rounded-xl">{icon}</div>
-        <Badge>{`+${percentage.toString()}%`}</Badge>
+        {/* <Badge>{`+${percentage}%`}</Badge> */}
+        <Badge>
+          <ArrowUpRightIcon className="text-green-500" />
+          {percentage}%
+        </Badge>
+        {/* <Badge>
+          <ArrowDownRightIcon />
+          {percentage}%
+        </Badge> */}
       </div>
       <p className="mt-8 mb-1">{info}</p>
       <div className="flex gap-4 items-center">
