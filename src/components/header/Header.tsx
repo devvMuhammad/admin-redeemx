@@ -1,4 +1,4 @@
-import { BellDot, BellDotIcon, BellIcon } from "lucide-react";
+import { BellDotIcon } from "lucide-react";
 import SectionName from "./SectionName";
 
 export default function Header() {
