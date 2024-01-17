@@ -2,6 +2,7 @@
 import { ChartData } from "chart.js";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import Heading from "../ui/Heading";
 
 const data: ChartData<"doughnut", number[], unknown> = {
   labels: ["Laptop", "Gift Cards", "Mobiles", "Accessories"],
@@ -20,9 +21,10 @@ export default function PieChart() {
   ChartJS.register(ArcElement, Tooltip, Legend);
   return (
     <div className="space-y-2">
-      <h1 className="font-bold tracking-tight text-center pl-4">
+      {/* <h1 className="font-bold tracking-tight text-center pl-4">
         Sales by category
-      </h1>
+      </h1> */}
+      <Heading className="text-2xl pl-8">Sales By Category</Heading>
       <Doughnut
         className="max-h-[425px]"
         data={data}

@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Heading from "../ui/Heading";
 
 ChartJS.register(
   CategoryScale,
@@ -38,18 +39,18 @@ const months = [
 
 export default function LineChart() {
   return (
-    <div className="p-2 border-2 border-white border-solid">
-      <h1>Line Chart</h1>
+    <div className="p-2 border-white border-solid">
+      <Heading className="text-2xl">Revenue Over Time</Heading>
       <Line
         data={{
           labels: months,
 
           datasets: [
             {
-              label: "Sales Made",
+              label: "Sales",
               data: Array(12)
                 .fill(0)
-                .map((elm, i) => (Math.random() * 10 + 1) * 1000),
+                .map(() => (Math.random() * 10 + 1) * 1000),
               borderColor: "#fff",
             },
           ],
