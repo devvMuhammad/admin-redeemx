@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Key } from "react";
+import Heading from "../ui/Heading";
 
 type Links = {
   name: string;
@@ -29,7 +30,8 @@ export default function Sidebar() {
   return (
     <div className="py-8 flex flex-col gap-10 items-center border-r border-solid border-slate-400">
       {/* HEADING */}
-      <h1 className="font-extrabold text-4xl tracking-tighter">RedeemX</h1>
+      {/* <h1 className="font-extrabold text-4xl tracking-tighter">RedeemX</h1> */}
+      <Heading>RedeemX</Heading>
       {/* LINKS */}
       <div className="flex flex-col gap-2 ">
         {/* <div className="flex gap-2 justify-between"> */}
