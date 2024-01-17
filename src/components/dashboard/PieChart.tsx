@@ -32,7 +32,7 @@ export default function PieChart() {
         options={{
           plugins: {
             legend: {
-              labels: { color: "white", font: { size: 14 } },
+              labels: { color: "white", font: { size: 16 } },
               position: "top",
             },
           },
