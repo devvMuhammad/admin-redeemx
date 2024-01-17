@@ -1,4 +1,5 @@
 import Infos from "@/components/dashboard/Infos";
+import LineChart from "@/components/dashboard/LineChart";
 import PieChart from "@/components/dashboard/PieChart";
 
 export default function Home() {
@@ -10,6 +11,10 @@ export default function Home() {
       <div>
         <PieChart />
       </div>
+      {/* <div> */}
+      {/* <div> */}
+      <LineChart />
+      {/* </div> */}
     </section>
   );
 }

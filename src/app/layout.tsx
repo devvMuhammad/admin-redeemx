@@ -24,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} bg-black text-white h-screen grid grid-rows-1 grid-cols-[1fr_5fr]`}
+        className={`${poppins.className} bg-black text-white min-h-screen grid grid-rows-1 grid-cols-[1fr_5fr]`}
       >
         {/* SIDEBAR COMPONENT */}
         <Sidebar />
