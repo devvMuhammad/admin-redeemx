@@ -24,7 +24,7 @@ export default function PieChart() {
         Sales by category
       </h1>
       <Doughnut
-        // className="fixed"
+        className="max-h-[425px]"
         data={data}
         options={{
           plugins: {
