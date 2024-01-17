@@ -56,6 +56,7 @@ export default function LineChart() {
           ],
         }}
         options={{
+          responsive: true,
           scales: {
             x: {
               title: {
