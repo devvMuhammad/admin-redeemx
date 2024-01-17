@@ -48,18 +48,9 @@ const dummyData: DummyInfo[] = [
 export default function Infos() {
   return (
     <div className="grid grid-rows-2 grid-cols-2 gap-6">
-      {dummyData.map(
-        ({ icon, info, percentage, mainNumber, weekDetail }, index) => (
-          <InfoCard
-            key={index}
-            info={info}
-            icon={icon}
-            percentage={percentage}
-            mainNumber={mainNumber}
-            weekDetail={weekDetail}
-          />
-        )
-      )}
+      {dummyData.map((info, index) => (
+        <InfoCard key={index} {...info} />
+      ))}
     </div>
   );
 }
