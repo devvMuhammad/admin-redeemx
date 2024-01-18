@@ -1,8 +1,9 @@
 import { Inter } from "next/font/google";
 import TableHeader from "./TableHeader";
 import Badge from "../ui/Badge";
+import ProductRow from "./ProductRow";
 
-type Product = {
+export type Product = {
   name: string;
   category: string;
   id: string;
@@ -10,6 +11,7 @@ type Product = {
   status: "Active" | "Out of Stock";
   revenue: number;
 };
+
 const dummyProducts: Product[] = [
   {
     name: 'TechMaster EliteBook X360 G8 UltraSlim Intel Core i7 16GB RAM 512GB SSD 14" FHD Touchscreen Windows 11 Pro Laptop',
@@ -86,31 +88,13 @@ const dummyProducts: Product[] = [
   },
 ];
 
-const inter = Inter({ weight: "400", style: "normal" });
-
 export default function ProductsTable() {
   return (
     <div className="overflow-x-auto">
       <div className="min-w-[700px] header product-rows grid gap-y-4 grid-cols-[auto_3fr_1fr_1fr_1fr_1fr_1fr] justify-center items-center text-center overflow-x-auto ">
         <TableHeader />
         {dummyProducts.map((product, i) => (
-          <>
-            <p className={`${inter.className}`}>{i + 1}</p>
-            <p className={`${inter.className}`}>{product.name}</p>
-            <p className={`${inter.className}`}>{product.category}</p>
-            <p className={`${inter.className}`}>{product.id}</p>
-            <p className={`${inter.className}`}>${product.price.toFixed(2)}</p>
-            <div className={`${inter.className}`}>
-              <Badge
-                className={`border-none text-white ${
-                  product.status === "Active" ? "bg-green-600" : "bg-red-600"
-                }`}
-              >
-                {product.status}
-              </Badge>
-            </div>
-            <p className={`${inter.className}`}>{product.revenue.toFixed(2)}</p>
-          </>
+          <ProductRow product={product} num={i + 1} key={product.id} />
         ))}
       </div>
     </div>
