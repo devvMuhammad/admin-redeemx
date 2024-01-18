@@ -91,7 +91,7 @@ const dummyProducts: Product[] = [
 export default function ProductsTable() {
   return (
     <div className="overflow-x-auto">
-      <div className="min-w-[700px] header product-rows grid gap-y-4 grid-cols-[auto_3fr_1fr_1fr_1fr_1fr_1fr] justify-center items-center text-center overflow-x-auto ">
+      <div className="min-w-[700px] header product-rows grid gap-y-4 grid-cols-[auto_3fr_1fr_1fr_1fr_1fr_1fr_0.5fr] justify-center items-center text-center overflow-x-auto ">
         <TableHeader />
         {dummyProducts.map((product, i) => (
           <ProductRow product={product} num={i + 1} key={product.id} />

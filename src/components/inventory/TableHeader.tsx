@@ -8,6 +8,7 @@ export default function TableHeader() {
       <span>Price</span>
       <span>Status</span>
       <span>Revenue</span>
+      <span>&nbsp;</span>
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import { Product } from "./ProductsTable";
 import Badge from "../ui/Badge";
+import { MoreHorizontalIcon } from "lucide-react";
 
 const inter = Inter({ weight: "400", style: "normal" });
 
@@ -28,6 +29,10 @@ export default function ProductRow({
         </Badge>
       </div>
       <p className={`${inter.className}`}>{product.revenue.toFixed(2)}</p>
+      {/* <p className={`${inter.className}`}>PPP</p> */}
+      <div className="mx-auto">
+        <MoreHorizontalIcon className="cursor-pointer p-1 border rounded-md border-white" />
+      </div>
     </>
   );
 }
