@@ -1,3 +1,9 @@
+import ProductsTable from "@/components/inventory/ProductsTable";
+
 export default function Inventory() {
-  return <p>Inventory</p>;
+  return (
+    <section>
+      <ProductsTable />
+    </section>
+  );
 }

@@ -2,11 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  height: 2px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 @layer base {
   :root {
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;
     --background-end-rgb: 255, 255, 255;
     --grey-color: #d6d7e1cb;
+  }
+  .header > span {
+    @apply font-bold border-t-2 border-b-2 border-l-2 border-white p-2;
+  }
+  .header > span:last-of-type:not(:first-child) {
+    @apply border-r-2 border-white border-solid;
+  }
+  .product-rows > p {
+    @apply text-xs md:text-sm
+    text-xs md:text-sm overflow-y-hidden text-nowrap;
+  }
+  .normal-row > span {
+    @apply bg-cyan-500 border-t border-white p-1;
   }
 }
