@@ -91,7 +91,7 @@ const inter = Inter({ weight: "400", style: "normal" });
 export default function ProductsTable() {
   return (
     <div className="overflow-x-auto">
-      <div className="min-w-[700px] header product-rows grid grid-rows-4 grid-cols-[auto_3fr_1fr_1fr_1fr_1fr_1fr] justify-center items-center text-center overflow-x-auto ">
+      <div className="min-w-[700px] header product-rows grid gap-y-4 grid-cols-[auto_3fr_1fr_1fr_1fr_1fr_1fr] justify-center items-center text-center overflow-x-auto ">
         <TableHeader />
         {dummyProducts.map((product, i) => (
           <>
