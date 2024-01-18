@@ -11,15 +11,15 @@ import { usePathname } from "next/navigation";
 import { Key } from "react";
 import Heading from "../ui/Heading";
 
-type Links = {
+type Link = {
   name: string;
   link: string & Key;
   icon: React.JSX.Element;
-}[];
+};
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const Links: Links = [
+  const Links: Link[] = [
     { name: "Dashboard", link: "", icon: <LayoutDashboardIcon /> },
     { name: "Inventory", link: "inventory", icon: <PackageSearchIcon /> },
     { name: "Orders", link: "orders", icon: <CircleDollarSignIcon /> },
