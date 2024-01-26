@@ -1,5 +1,5 @@
+import CategorySelect from "../ui/CategorySelect";
 import SearchInput from "../ui/SearchInput";
-import { Input } from "../ui/input";
 
 export default function ProductControls() {
   /*
@@ -12,7 +12,10 @@ export default function ProductControls() {
   */
   return (
     <div className="flex ">
+      {/* Search input */}
       <SearchInput />
+      {/* selecting category */}
+      <CategorySelect />
     </div>
   );
 }
