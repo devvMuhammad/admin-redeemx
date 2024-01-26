@@ -52,7 +52,7 @@ export default function LineChart() {
                 .map(() => (Math.random() * 10 + 1) * 1000),
               borderColor: "#fff",
               pointBackgroundColor: "black",
-              pointBorderColor: "white",
+              pointBorderColor: "whit",
               pointRadius: 4,
             },
           ],
