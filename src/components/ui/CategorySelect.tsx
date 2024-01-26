@@ -5,7 +5,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -21,8 +20,8 @@ export default function CategorySelect() {
       value={category}
       onValueChange={(val) => setCategory(val)}
     >
-      <SelectTrigger className="w-[180px]">
-        <SelectValue className="text-white" placeholder="Select Category" />
+      <SelectTrigger className="border w-[180px]">
+        <SelectValue placeholder="Select Category" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
