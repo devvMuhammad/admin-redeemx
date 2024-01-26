@@ -37,7 +37,9 @@ export default function InfoCard({
           {info === "Total Sales" && "$"}
           {mainNumber}
         </h1>
-        <p>+{weekDetail} this week</p>
+        <p>
+          +<span className="text-lg">{weekDetail}</span> this week
+        </p>
       </div>
     </div>
   );
