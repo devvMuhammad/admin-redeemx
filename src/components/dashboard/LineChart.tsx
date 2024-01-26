@@ -44,7 +44,6 @@ export default function LineChart() {
       <Line
         data={{
           labels: months,
-
           datasets: [
             {
               label: "Sales",
@@ -52,6 +51,9 @@ export default function LineChart() {
                 .fill(0)
                 .map(() => (Math.random() * 10 + 1) * 1000),
               borderColor: "#fff",
+              pointBackgroundColor: "black",
+              pointBorderColor: "white",
+              pointRadius: 4,
             },
           ],
         }}
