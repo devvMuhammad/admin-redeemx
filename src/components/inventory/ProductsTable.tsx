@@ -1,6 +1,4 @@
-import { Inter } from "next/font/google";
 import TableHeader from "./TableHeader";
-import Badge from "../ui/Badge";
 import ProductRow from "./ProductRow";
 
 export type Product = {
@@ -84,6 +82,14 @@ const dummyProducts: Product[] = [
     id: "MMPR724",
     price: 1599.99,
     status: "Active",
+    revenue: 0,
+  },
+  {
+    name: 'MediaMaster Plus Ryzen 7 24GB RAM 512GB SSD 17.3" FHD Windows 11 Laptop',
+    category: "Laptops",
+    id: "MMPR724",
+    price: 1599.99,
+    status: "Out of Stock",
     revenue: 0,
   },
 ];
