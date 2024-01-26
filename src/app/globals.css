@@ -23,10 +23,10 @@
     --grey-color: #d6d7e1cb;
   }
   .header > span {
-    @apply font-bold text-sm md:text-lg border-t-2 border-b-2 border-l-2 border-white p-2;
+    @apply font-bold text-sm md:text-lg border-t border-b border-l border-white p-2;
   }
   .header > span:last-of-type:not(:first-child) {
-    @apply border-r-2 border-white border-solid;
+    @apply border-r border-white border-solid;
   }
   .product-rows > p {
     @apply text-xs md:text-sm
