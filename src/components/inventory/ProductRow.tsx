@@ -31,7 +31,7 @@ export default function ProductRow({
       <p className={`${inter.className}`}>{product.revenue.toFixed(2)}</p>
       {/* <p className={`${inter.className}`}>PPP</p> */}
       <div className="mx-auto">
-        <MoreHorizontalIcon className="cursor-pointer p-1 border rounded-md border-white" />
+        <MoreHorizontalIcon className="cursor-pointer p-1 border rounded-md border-white hover:translate-y-[-2px]" />
       </div>
     </>
   );
