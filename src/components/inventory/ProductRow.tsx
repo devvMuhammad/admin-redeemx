@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import { Product } from "./ProductsTable";
 import Badge from "../ui/Badge";
 import { MoreHorizontalIcon } from "lucide-react";
+import { Checkbox } from "../ui/checkbox";
 
 const inter = Inter({ weight: "400", style: "normal" });
 
@@ -14,7 +15,10 @@ export default function ProductRow({
 }) {
   return (
     <>
-      <p className={`${inter.className}`}>{num}</p>
+      {/* <p className={`${inter.className}`}>{num}</p> */}
+      <div className="flex items-center justify-center">
+        <Checkbox className="border border-white h" />
+      </div>
       <p className={`${inter.className}`}>{product.name}</p>
       <p className={`${inter.className}`}>{product.category}</p>
       <p className={`${inter.className}`}>{product.id}</p>
