@@ -22,23 +22,19 @@ export default function InfoCard({
       <div className="hidden md:flex justify-between items-center">
         <div className="bg-gray-700 p-3 rounded-xl">{icon}</div>
         {/* <Badge>{`+${percentage}%`}</Badge> */}
-        <Badge>
+        <Badge className="text-sm font-bold">
           <ArrowUpRightIcon className="text-green-500" />
           {percentage}%
         </Badge>
-        {/* <Badge>
-          <ArrowDownRightIcon />
-          {percentage}%
-        </Badge> */}
       </div>
-      <p className="md:mt-8 mb-1">{info}</p>
-      <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-4">
+      <p className="md:mt-8 mb-1 overflow-y-hidden text-nowrap">{info}</p>
+      <div className="flex flex-col items-start gap-2 md:flex-row md:flex-grow md:items-center md:gap-4">
         <h1 className="font-bold text-xl md:text-3xl">
           {info === "Total Sales" && "$"}
           {mainNumber}
         </h1>
-        <p>
-          +<span className="text-lg">{weekDetail}</span> this week
+        <p className="overflow-y-hidden text-nowrap">
+          +<span className="text-lg ">{weekDetail}</span> this week
         </p>
       </div>
     </div>

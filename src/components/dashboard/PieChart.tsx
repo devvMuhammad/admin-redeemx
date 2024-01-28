@@ -21,13 +21,13 @@ const data: ChartData<"doughnut", number[], unknown> = {
 
 export default function PieChart() {
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 flex flex-col items-center justify-center">
       {/* <h1 className="font-bold tracking-tight text-center pl-4">
         Sales by category
       </h1> */}
-      <Heading className="text-2xl pl-8">Sales By Category</Heading>
+      <Heading className="text-2xl pl-8 self-start">Sales By Category</Heading>
       <Doughnut
-        className="max-h-[425px]"
+        className="max-h-[425px] max-w-[400px]"
         data={data}
         options={{
           plugins: {
