@@ -42,8 +42,6 @@ export default function LineChart() {
     <div className="p-2 border-white border-solid">
       <Heading className="text-2xl">Revenue Over Time</Heading>
       <Line
-        // className=" min-h-[400px]"
-
         data={{
           labels: months,
           datasets: [
