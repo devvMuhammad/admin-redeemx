@@ -2,29 +2,18 @@
 import TableHeader from "./TableHeader";
 import ProductRow from "./ProductRow";
 import { dummyProducts } from "./DummyProducts";
-import { useState } from "react";
 import { Button } from "../ui/button";
+import { useSelectDelete } from "@/hooks/useSelectDelete";
 
 export default function ProductsTable() {
-  const [checkedBoxes, setCheckedBoxes] = useState<number[]>(() =>
-    Array.from(Array(5), () => 0)
-  );
-  const checkedNum: number = checkedBoxes.reduce((acc, elm) => {
-    if (elm === 1) acc++;
-    return acc;
-  });
-  const addItem = (i: number) =>
-    setCheckedBoxes((prev) => {
-      const copy = [...prev];
-      copy[i] = 1;
-      return copy;
-    });
-  const removeItem = (i: number) =>
-    setCheckedBoxes((prev) => {
-      const copy = [...prev];
-      copy[i] = 0;
-      return copy;
-    });
+  const {
+    checkedBoxes,
+    checkedNum,
+    addItem,
+    removeItem,
+    selectAll,
+    unselectAll,
+  } = useSelectDelete();
   return (
     <div className="overflow-x-auto space-y-2">
       {checkedNum > 0 && (
@@ -34,16 +23,8 @@ export default function ProductsTable() {
             Selected
           </div>
           <Button variant="destructive">Delete At Once</Button>
-          <Button
-            onClick={() => setCheckedBoxes(Array.from(Array(10), () => 1))}
-          >
-            Select All
-          </Button>
-          <Button
-            onClick={() => setCheckedBoxes(Array.from(Array(10), () => 0))}
-          >
-            Unselect
-          </Button>
+          <Button onClick={selectAll}>Select All</Button>
+          <Button onClick={unselectAll}>Unselect</Button>
         </div>
       )}
       <div className="min-w-[700px] header product-rows grid gap-y-4 grid-cols-[auto_3fr_1fr_1fr_1fr_1fr_1fr_0.5fr] justify-center items-center text-center overflow-x-auto ">
