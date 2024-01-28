@@ -25,10 +25,9 @@ export default function ProductsTable() {
       copy[i] = 0;
       return copy;
     });
-  // const removeItem = () => setSelected((prev) => prev - 1);
   return (
     <div className="overflow-x-auto space-y-2">
-      {checkedBoxes?.length > 0 && (
+      {checkedNum > 0 && (
         <div className="flex gap-4">
           <div>
             <span className="font-bold text-xl">{checkedNum}</span> Products
