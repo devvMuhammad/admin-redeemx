@@ -11,10 +11,7 @@ export default function Home() {
       <div>
         <PieChart />
       </div>
-      {/* <div> */}
-      {/* <div> */}
       <LineChart />
-      {/* </div> */}
     </section>
   );
 }
