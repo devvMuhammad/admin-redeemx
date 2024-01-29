@@ -1,7 +1,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -18,8 +17,8 @@ export default function NewProduct() {
         </Button>
       </DialogTrigger>
       <DialogContent className="bg-black text-white">
-        <DialogHeader>
-          <DialogTitle>Fill the info for the new product</DialogTitle>
+        <DialogHeader className="text-xl">
+          <DialogTitle>Fill The Information</DialogTitle>
         </DialogHeader>
         <NewProductForm />
       </DialogContent>
