@@ -2,6 +2,7 @@ import CategorySelect from "../ui/CategorySelect";
 import SearchInput from "../ui/SearchInput";
 import SortSelect from "../ui/SortSelect";
 import { Button } from "../ui/button";
+import NewProduct from "./NewProduct";
 
 export default function ProductControls() {
   /*
@@ -25,9 +26,7 @@ export default function ProductControls() {
         <Button size="lg" className="font-bold text-lg p-4">
           Export as CV
         </Button>
-        <Button size="lg" className="font-bold text-lg p-4">
-          New Item
-        </Button>
+        <NewProduct />
       </div>
     </div>
   );
