@@ -16,7 +16,7 @@ export default function CategorySelect() {
   const [category, setCategory] = useState("All");
   return (
     <Select
-      defaultValue="A"
+      defaultValue="All"
       value={category}
       onValueChange={(val) => setCategory(val)}
     >
