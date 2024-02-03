@@ -36,37 +36,45 @@ export default function NewProductForm() {
       className="flex flex-col gap-6"
     >
       <div className="flex flex-col gap-2">
-        <div className="grid items-center grid-cols-[1fr_3fr] gap-x-2">
-          <Label htmlFor="name">Name</Label>
-          <Input id="name" {...register("name")} />
+        <div className="grid items-center grid-cols-[1fr_3fr] gap-x-4">
+          <Label className="text-sm text-right" htmlFor="name">
+            Name
+          </Label>
+          <Input id="name" className="h-10" {...register("name")} />
         </div>
         {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-        <div className="grid items-center grid-cols-[1fr_3fr] gap-x-2">
-          <Label htmlFor="category">Category</Label>
-          <CategorySelect />
-        </div>
-        <div className="grid items-center grid-cols-[1fr_3fr] gap-x-2">
-          <Label htmlFor="price">Price</Label>
+        <div className="grid items-center grid-cols-[1fr_3fr] gap-x-4">
+          <Label className="text-sm text-right" htmlFor="price">
+            Price
+          </Label>
           <Input
             id="price"
             defaultValue={0}
             type="number"
-            className="w-1/2"
+            className="w-1/2 h-10"
             {...register("price", { valueAsNumber: true })}
           />
         </div>
         {errors.price && <p className="text-red-500">{errors.price.message}</p>}
-        <div className="grid items-center grid-cols-[1fr_3fr] gap-x-2">
-          <Label htmlFor="stock">Set Stock</Label>
+        <div className="grid items-center grid-cols-[1fr_3fr] gap-x-4">
+          <Label className="text-sm text-right" htmlFor="stock">
+            Set Stock
+          </Label>
           <Input
             id="stock"
             type="number"
             defaultValue={0}
-            className="w-1/2"
+            className="w-1/2 h-10"
             {...register("stock", { valueAsNumber: true })}
           />
         </div>
         {errors.stock && <p className="text-red-500">{errors.stock.message}</p>}
+        <div className="grid items-center grid-cols-[1fr_3fr] gap-x-4">
+          <Label className="text-sm text-right" htmlFor="category">
+            Category
+          </Label>
+          <CategorySelect />
+        </div>
       </div>
       <Button className="self-end font-bold">Add Product</Button>
     </form>
