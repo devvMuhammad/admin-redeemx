@@ -18,7 +18,7 @@ export default function InfoCard({
   icon,
 }: InfoCardProps) {
   return (
-    <div className="p-5 border border-grey rounded-xl">
+    <div className="p-5 border border-gray-700 rounded-xl">
       <div className="hidden md:flex justify-between items-center">
         <div className="bg-gray-700 p-3 rounded-xl">{icon}</div>
         {/* <Badge>{`+${percentage}%`}</Badge> */}
