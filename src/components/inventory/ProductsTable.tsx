@@ -27,7 +27,7 @@ export default function ProductsTable() {
           <Button onClick={unselectAll}>Unselect</Button>
         </div>
       )}
-      <div className="min-w-[700px] header product-rows grid gap-y-4 grid-cols-[auto_3fr_1fr_1fr_1fr_1fr_1fr_0.5fr] justify-center items-center text-center overflow-x-auto ">
+      <div className="min-w-[700px] border border-gray-600 pb-4 rounded-xl header product-rows grid gap-y-4 grid-cols-[auto_3fr_1fr_1fr_1fr_1fr_1fr_0.5fr] justify-center items-center text-center overflow-x-auto ">
         <TableHeader />
         {dummyProducts.map((product, i) => (
           <ProductRow

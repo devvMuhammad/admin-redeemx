@@ -87,10 +87,7 @@
 
 @layer base {
   .header > span {
-    @apply font-bold text-sm md:text-lg border-t border-b border-l border-white p-2;
-  }
-  .header > span:last-of-type:not(:first-child) {
-    @apply border-r border-white border-solid;
+    @apply text-sm md:text-lg p-2;
   }
   .product-rows > p {
     @apply text-xs md:text-sm
