@@ -11,17 +11,17 @@ export default function Header() {
     <nav className="flex justify-between mt-3 border-b border-b-grey p-3">
       <div className="flex flex-col gap-2">
         <SectionName />
-        <p className="text-grey">{date}</p>
+        <p className="text-sm md:text-lg text-grey">{date}</p>
       </div>
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-2 items-center">
         <div className="cursor-pointer w-10 h-10 flex items-center justify-center p-1 border rounded-full hover:bg-white hover:text-black">
           <BellDotIcon className="h-5 w-5" />
         </div>
         <div className="cursor-pointer w-10 h-10 bg-white rounded-full"></div>
-        <div>
+        {/* <div>
           <p className="font-bold">Muhammad Amjad</p>
           <p className="text-sm text-grey">Admin Store</p>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
