@@ -1,6 +1,5 @@
 "use client";
 import {
-  BarChartBigIcon,
   CircleDollarSignIcon,
   LayoutDashboardIcon,
   LucideUserRoundCog,
@@ -23,7 +22,6 @@ export default function Sidebar() {
     { name: "Dashboard", link: "", icon: <LayoutDashboardIcon /> },
     { name: "Inventory", link: "inventory", icon: <PackageSearchIcon /> },
     { name: "Orders", link: "orders", icon: <CircleDollarSignIcon /> },
-    { name: "Analytics", link: "analytics", icon: <BarChartBigIcon /> },
     { name: "Settings", link: "settings", icon: <LucideUserRoundCog /> },
   ];
 
