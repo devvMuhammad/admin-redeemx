@@ -35,40 +35,58 @@ export default function NewProductForm() {
       onSubmit={handleSubmit(submitHandler)}
       className="flex flex-col gap-6"
     >
-      <div className="flex flex-col gap-2">
-        <div className="grid items-center grid-cols-[1fr_3fr] gap-x-4">
-          <Label className="text-sm text-right" htmlFor="name">
-            Name
-          </Label>
-          <Input id="name" className="h-10" {...register("name")} />
+      <div className="space-y-2">
+        <div className="flex flex-col gap-1">
+          <div className="grid items-center grid-cols-[1fr_3fr] gap-x-4">
+            <Label className="text-sm text-right" htmlFor="name">
+              Name
+            </Label>
+            <Input id="name" className="h-10" {...register("name")} />
+          </div>
+          {errors.name && (
+            <p className="self-center text-sm text-red-500 mx-auto">
+              {errors.name.message}
+            </p>
+          )}
         </div>
-        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-        <div className="grid items-center grid-cols-[1fr_3fr] gap-x-4">
-          <Label className="text-sm text-right" htmlFor="price">
-            Price
-          </Label>
-          <Input
-            id="price"
-            defaultValue={0}
-            type="number"
-            className="w-1/2 h-10"
-            {...register("price", { valueAsNumber: true })}
-          />
+        <div className="flex flex-col gap-1">
+          <div className="grid items-center grid-cols-[1fr_3fr] gap-x-4">
+            <Label className="text-sm text-right" htmlFor="price">
+              Price
+            </Label>
+            <Input
+              id="price"
+              defaultValue={0}
+              type="number"
+              className="w-1/2 h-10"
+              {...register("price", { valueAsNumber: true })}
+            />
+          </div>
+          {errors.price && (
+            <p className="text-sm text-red-500 mx-auto">
+              {errors.price.message}
+            </p>
+          )}
         </div>
-        {errors.price && <p className="text-red-500">{errors.price.message}</p>}
-        <div className="grid items-center grid-cols-[1fr_3fr] gap-x-4">
-          <Label className="text-sm text-right" htmlFor="stock">
-            Set Stock
-          </Label>
-          <Input
-            id="stock"
-            type="number"
-            defaultValue={0}
-            className="w-1/2 h-10"
-            {...register("stock", { valueAsNumber: true })}
-          />
+        <div className="flex flex-col gap-1">
+          <div className="grid items-center grid-cols-[1fr_3fr] gap-x-4">
+            <Label className="text-sm text-right" htmlFor="stock">
+              Set Stock
+            </Label>
+            <Input
+              id="stock"
+              type="number"
+              defaultValue={0}
+              className="w-1/2 h-10"
+              {...register("stock", { valueAsNumber: true })}
+            />
+          </div>
+          {errors.stock && (
+            <p className="text-sm text-red-500 mx-auto">
+              {errors.stock.message}
+            </p>
+          )}
         </div>
-        {errors.stock && <p className="text-red-500">{errors.stock.message}</p>}
         <div className="grid items-center grid-cols-[1fr_3fr] gap-x-4">
           <Label className="text-sm text-right" htmlFor="category">
             Category
