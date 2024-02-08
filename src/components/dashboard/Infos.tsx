@@ -47,7 +47,7 @@ const dummyData: DummyInfo[] = [
 
 export default function Infos() {
   return (
-    <div className="grid grid-rows-2 grid-cols-2 gap-6">
+    <div className="grid md:grid-rows-2 md:grid-cols-2 gap-6">
       {dummyData.map((info, index) => (
         <InfoCard key={index} {...info} />
       ))}

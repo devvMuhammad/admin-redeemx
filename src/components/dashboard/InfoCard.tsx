@@ -33,7 +33,7 @@ export default function InfoCard({
           {info === "Total Sales" && "$"}
           {mainNumber}
         </h1>
-        <p className="overflow-y-hidden text-nowrap">
+        <p className="text-sm font-thin overflow-y-hidden text-nowrap">
           +<span className="text-lg ">{weekDetail}</span> this week
         </p>
       </div>
