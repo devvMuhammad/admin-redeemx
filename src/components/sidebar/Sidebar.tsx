@@ -39,7 +39,7 @@ export default function Sidebar() {
           <Link
             key={link}
             href={`/${link}`}
-            className={`flex gap-4 px-6 rounded-xl py-2 hover:bg-slate-400 transition-all duration-200 ease-in-out ${
+            className={`flex gap-4 px-6 rounded-md py-2 hover:bg-slate-400 transition-all duration-200 ease-in-out ${
               pathname === `/${link}` && "bg-slate-400"
             }`}
           >
