@@ -39,7 +39,7 @@ const months = [
 
 export default function LineChart() {
   return (
-    <div className="h-[400px] p-2 border-white border-solid">
+    <div className="h-[400px] mb-4 md:mb-0 p-2 border-white border-solid">
       <Heading className="text-2xl">Revenue Over Time</Heading>
       <Line
         data={{
