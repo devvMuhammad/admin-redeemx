@@ -16,16 +16,16 @@ export default function TopProducts() {
             i < 5 && (
               <div
                 key={name}
-                className="grid grid-cols-[40px_1fr_110px] gap-2 items-center"
+                className="grid grid-cols-[1fr_110px] md:grid-cols-[40px_1fr_110px] gap-1 items-center"
               >
-                <div className="bg-red-500 h-9 w-9 rounded-full"></div>
+                <div className="hidden md:block bg-red-500 h-9 w-9 rounded-full"></div>
                 <p
-                  className={`text-sm ${inter.className} font-medium leading-none overflow-y-hidden text-nowrap ml-2`}
+                  className={` text-xs md:text-sm ${inter.className} font-medium leading-none overflow-y-hidden text-nowrap ml-2`}
                 >
                   {name}
                 </p>
                 <span
-                  className={`${inter.className} font-bold text-right overflow-y-hidden text-nowrap `}
+                  className={`${inter.className} text-sm font-bold text-right overflow-y-hidden text-nowrap `}
                 >
                   +${price}
                 </span>
