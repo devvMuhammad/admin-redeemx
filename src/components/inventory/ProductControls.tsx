@@ -26,12 +26,7 @@ export default function ProductControls() {
         {/* sorting options */}
         <SortSelect />
 
-        <Button
-          size="lg"
-          className={` ${inter.className} font-bold text-lg p-4`}
-        >
-          Export as CV
-        </Button>
+        <Button className={`${inter.className} font-bold`}>Export as CV</Button>
         <NewProduct />
       </div>
     </div>

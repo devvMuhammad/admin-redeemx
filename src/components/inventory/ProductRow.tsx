@@ -54,7 +54,7 @@ export default function ProductRow({
     <>
       <div className="flex items-center justify-center">
         <Checkbox
-          className="border border-white h"
+          className="border border-white"
           checked={checked}
           onCheckedChange={(checked) =>
             checked ? addItemToDelete(index) : removeItemToDelete(index)

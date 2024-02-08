@@ -16,18 +16,7 @@ export default function ProductsTable() {
   } = useSelectDelete();
   return (
     <div className="overflow-x-auto space-y-2">
-      {checkedNum > 0 && (
-        <div className="flex gap-4">
-          <div>
-            <span className="font-bold text-xl">{checkedNum}</span> Products
-            Selected
-          </div>
-          <Button variant="destructive">Delete At Once</Button>
-          <Button onClick={selectAll}>Select All</Button>
-          <Button onClick={unselectAll}>Unselect</Button>
-        </div>
-      )}
-      <div className="min-w-[700px] border border-gray-600 pb-4 rounded-xl header product-rows grid gap-y-4 grid-cols-[auto_3fr_1fr_1fr_1fr_1fr_1fr_0.5fr] justify-center items-center text-center overflow-x-auto ">
+      <div className="min-w-[700px] border border-gray-600 pb-4 rounded-xl header product-rows grid gap-y-4 gap-x-2 md:gap-x-0 grid-cols-[auto_3fr_1fr_1fr_1fr_1fr_1fr_0.5fr] justify-center items-center text-center overflow-x-auto ">
         <TableHeader />
         {dummyProducts.map((product, i) => (
           <ProductRow
@@ -40,6 +29,17 @@ export default function ProductsTable() {
           />
         ))}
       </div>
+      {checkedNum > 0 && (
+        <div className="flex gap-4">
+          <div>
+            <span className="font-bold text-xl">{checkedNum}</span> Products
+            Selected
+          </div>
+          <Button variant="destructive">Delete At Once</Button>
+          <Button onClick={selectAll}>Select All</Button>
+          <Button onClick={unselectAll}>Unselect</Button>
+        </div>
+      )}
     </div>
   );
 }

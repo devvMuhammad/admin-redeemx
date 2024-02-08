@@ -16,12 +16,7 @@ export default function NewProduct() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          size="lg"
-          className={`${inter.className} font-bold text-lg p-4`}
-        >
-          New Item
-        </Button>
+        <Button className={`${inter.className} font-bold p-4`}>New Item</Button>
       </DialogTrigger>
       <DialogContent className="bg-black text-white">
         <DialogHeader className="text-xl mb-4">

@@ -9,7 +9,7 @@ export default function SearchInput() {
       </label>
       <Input
         id="search"
-        className="border border-white pl-12 min-w-[400px] max-w-[500px] h-10"
+        className="border border-white pl-12 min-w-[300px] max-w-[500px] h-10"
         placeholder="Search An Item"
       />
     </div>
