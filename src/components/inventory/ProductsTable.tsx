@@ -4,6 +4,7 @@ import ProductRow from "./ProductRow";
 import { dummyProducts } from "./DummyProducts";
 import { Button } from "../ui/button";
 import { useSelectDelete } from "@/hooks/useSelectDelete";
+import Pagination from "./Pagination";
 
 export default function ProductsTable() {
   const {
@@ -29,6 +30,7 @@ export default function ProductsTable() {
           />
         ))}
       </div>
+      <Pagination />
       {checkedNum > 0 && (
         <div className="flex gap-4">
           <div>
