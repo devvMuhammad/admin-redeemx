@@ -1,53 +1,123 @@
+import { MoreHorizontalIcon } from "lucide-react";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  weight: "400",
+  style: "normal",
+});
+
+interface Order {
+  orderId: string;
+  name: string;
+  date: string;
+  totalAmount: string;
+  status: string;
+  address: string;
+  orderItems?: string[];
+}
+
+const ordersData: Order[] = [
+  {
+    orderId: "#3210",
+    name: "Olivia Martin",
+    date: "February 20, 2024, 10:30 AM",
+    totalAmount: "$42.25",
+    status: "Shipped",
+    address: "123 Main St, Cityville",
+    orderItems: ["Product A", "Product B", "Product C"],
+  },
+  {
+    orderId: "#3209",
+    name: "Ava Johnson",
+    date: "January 5, 2024, 02:45 PM",
+    totalAmount: "$74.99",
+    status: "Paid",
+    address: "456 Oak Ave, Townsville",
+    orderItems: ["Product X", "Product Y"],
+  },
+  {
+    orderId: "#3204",
+    name: "Michael Johnson",
+    date: "August 3, 2023 08:15 AM",
+    totalAmount: "$64.75",
+    status: "Unfulfilled",
+    address: "789 Pine Blvd, Villagetown",
+    orderItems: ["Product M", "Product N", "Product O"],
+  },
+  {
+    orderId: "#3203",
+    name: "Lisa Anderson",
+    date: "July 15, 2023 11:00 AM",
+    totalAmount: "$34.50",
+    status: "Shipped",
+    address: "101 Cedar Lane, Hamlet City",
+    orderItems: ["Product P", "Product Q"],
+  },
+  {
+    orderId: "#3202",
+    name: "Samantha Green",
+    date: "June 5, 2023 03:30 PM",
+    totalAmount: "$89.99",
+    status: "Paid",
+    address: "202 Maple Street, Woodsville",
+    orderItems: ["Product Z"],
+  },
+  {
+    orderId: "#3201",
+    name: "Adam Barlow",
+    date: "May 20, 2023 09:45 AM",
+    totalAmount: "$24.99",
+    status: "Unfulfilled",
+    address: "303 Birch Road, Timberland",
+    orderItems: ["Product D", "Product E"],
+  },
+  {
+    orderId: "#3207",
+    name: "Sophia Anderson",
+    date: "November 2, 2022 01:20 PM",
+    totalAmount: "$99.99",
+    status: "Paid",
+    address: "404 Oakwood Lane, Parkville",
+    orderItems: ["Product F", "Product G"],
+  },
+  {
+    orderId: "#3206",
+    name: "Daniel Smith",
+    date: "October 7, 2022 05:45 PM",
+    totalAmount: "$67.50",
+    status: "Shipped",
+    address: "505 Pinecrest Avenue, Grove City",
+    orderItems: ["Product H", "Product I", "Product J"],
+  },
+];
+
 export default function Orders() {
   return (
-    <main>
-      <div className="border shadow-sm rounded-lg p-2">
-        <div className="min-w-[700px] pb-4 rounded-xl header product-rows grid gap-y-4 gap-x-2 md:gap-x-0 grid-cols-[auto_3fr_1fr_1fr_1fr] justify-center items-center text-center overflow-x-auto">
-          <div className="w-[100px]">Order</div>
-          <div className="min-w-[150px]">Customer</div>
-          <div className="hidden md:table-cell">Date</div>
-          <div className="text-right">Total</div>
-          <div className="hidden sm:table-cell">Actions</div>
-          <div className="font-medium">#3210</div>
-          <div>Olivia Martin</div>
-          <div className="hidden md:table-cell">February 20, 2024</div>
-          <div className="text-right">$42.25</div>
-          <div className="hidden sm:table-cell">Shipped</div>
-          <div className="font-medium">#3209</div>
-          <div>Ava Johnson</div>
-          <div className="hidden md:table-cell">January 5, 2024</div>
-          <div className="text-right">$74.99</div>
-          <div className="hidden sm:table-cell">Paid</div>
-          <div className="font-medium">#3204</div>
-          <div>Michael Johnson</div>
-          <div className="hidden md:table-cell">August 3, 2023</div>
-          <div className="text-right">$64.75</div>
-          <div className="hidden sm:table-cell">Unfulfilled</div>
-          <div className="font-medium">#3203</div>
-          <div>Lisa Anderson</div>
-          <div className="hidden md:table-cell">July 15, 2023</div>
-          <div className="text-right">$34.50</div>
-          <div className="hidden sm:table-cell">Shipped</div>
-          <div className="font-medium">#3202</div>
-          <div>Samantha Green</div>
-          <div className="hidden md:table-cell">June 5, 2023</div>
-          <div className="text-right">$89.99</div>
-          <div className="hidden sm:table-cell">Paid</div>
-          <div className="font-medium">#3201</div>
-          <div>Adam Barlow</div>
-          <div className="hidden md:table-cell">May 20, 2023</div>
-          <div className="text-right">$24.99</div>
-          <div className="hidden sm:table-cell">Unfulfilled</div>
-          <div className="font-medium">#3207</div>
-          <div>Sophia Anderson</div>
-          <div className="hidden md:table-cell">November 2, 2022</div>
-          <div className="text-right">$99.99</div>
-          <div className="hidden sm:table-cell">Paid</div>
-          <div className="font-medium">#3206</div>
-          <div>Daniel Smith</div>
-          <div className="hidden md:table-cell">October 7, 2022</div>
-          <div className="text-right">$67.50</div>
-          <div className="hidden sm:table-cell">Shipped</div>
+    <main className={`${inter.className}`}>
+      <div className="border border-zinc-600 shadow-sm rounded-lg px-4">
+        <div className="pb-4 rounded-xl header order-rows grid grid-cols-[auto_1fr_1.5fr_auto_1.5fr_1fr_auto] gap-y-4 gap-x-2 justify-center items-center text-center overflow-x-auto">
+          {/* TABLE HEADER */}
+          <span className="font-bold">ID</span>
+          <span className="font-bold">Customer</span>
+          <span className="font-bold">Date</span>
+          <span className="font-bold">Total Amount</span>
+          <span className="font-bold">Address</span>
+          <span className="font-bold">Status</span>
+          <span className="font-bold">Actions</span>
+          {/* TABLE ROWS */}
+          {ordersData.map((order) => (
+            <>
+              <p className="font-medium">{order.orderId}</p>
+              <p className="pl-4 text-lft">{order.name}</p>
+              <p className="text-center">{order.date}</p>
+              <p>{order.totalAmount}</p>
+              <p className="text-left">{order.address}</p>
+              <p>{order.status}</p>
+              <div className="mx-auto">
+                <MoreHorizontalIcon className="cursor-pointer p-1 border rounded-md border-white hover:translate-y-[-2px]" />
+              </div>
+            </>
+          ))}
         </div>
       </div>
     </main>

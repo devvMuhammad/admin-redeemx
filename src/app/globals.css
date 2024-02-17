@@ -91,7 +91,11 @@
   }
   .product-rows > p {
     @apply text-xs md:text-sm
-    text-xs md:text-sm overflow-y-hidden text-nowrap;
+    text-xs md:text-base overflow-y-hidden text-nowrap;
+  }
+  .order-rows > p {
+    @apply text-xs md:text-sm
+    text-xs md:text-base overflow-y-hidden text-nowrap;
   }
   .normal-row > span {
     @apply bg-cyan-500 border-t border-white p-1;
