@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import Badge from "../ui/Badge";
-import { MoreHorizontalIcon } from "lucide-react";
+import { Edit2Icon, MoreHorizontalIcon } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
 import { Product } from "./DummyProducts";
 import { memo } from "react";
@@ -15,7 +15,8 @@ const RemainingProductRows = memo(function RemainingProductRows({
   return (
     <>
       {" "}
-      <p className={`${inter.className}`}>{product.name}</p>
+      <div className="h-12 w-12 bg-gray-500 rounded-md mx-2"></div>
+      <p className={`${inter.className} flex gap-2`}>{product.name}</p>
       <p className={`${inter.className}`}>{product.category}</p>
       <p className={`${inter.className}`}>{product.id}</p>
       <p className={`${inter.className}`}>${product.price.toFixed(2)}</p>
@@ -30,7 +31,7 @@ const RemainingProductRows = memo(function RemainingProductRows({
       </div>
       <p className={`${inter.className}`}>{product.revenue.toFixed(2)}</p>
       <div className="mx-auto">
-        <MoreHorizontalIcon className="cursor-pointer p-1 border rounded-md border-white hover:translate-y-[-2px]" />
+        <Edit2Icon className="cursor-pointer p-1 border rounded-md border-white hover:translate-y-[-2px]" />
       </div>
     </>
   );
@@ -61,6 +62,7 @@ export default function ProductRow({
           }
         />
       </div>
+
       <RemainingProductRows product={product} />
     </>
   );
