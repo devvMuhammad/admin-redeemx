@@ -8,7 +8,7 @@ export default function Header() {
     year: "numeric",
   });
   return (
-    <nav className="flex justify-between mt-3 border-b border-b-grey p-3">
+    <nav className="flex justify-between mt-3 border-b border-b-grey px-3 py-1">
       <div className="flex flex-col gap-2">
         <SectionName />
         <p className="text-sm md:text-lg text-grey">{date}</p>
