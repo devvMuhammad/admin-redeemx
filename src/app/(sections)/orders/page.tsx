@@ -1,3 +1,4 @@
+import Pagination from "@/components/inventory/Pagination";
 import { MoreHorizontalIcon } from "lucide-react";
 import { Inter } from "next/font/google";
 
@@ -89,6 +90,42 @@ const ordersData: Order[] = [
     address: "505 Pinecrest Avenue, Grove City",
     orderItems: ["Product H", "Product I", "Product J"],
   },
+  {
+    orderId: "#3207",
+    name: "Sophia Anderson",
+    date: "November 2, 2022 01:20 PM",
+    totalAmount: "$99.99",
+    status: "Paid",
+    address: "404 Oakwood Lane, Parkville",
+    orderItems: ["Product F", "Product G"],
+  },
+  {
+    orderId: "#3206",
+    name: "Daniel Smith",
+    date: "October 7, 2022 05:45 PM",
+    totalAmount: "$67.50",
+    status: "Shipped",
+    address: "505 Pinecrest Avenue, Grove City",
+    orderItems: ["Product H", "Product I", "Product J"],
+  },
+  {
+    orderId: "#3207",
+    name: "Sophia Anderson",
+    date: "November 2, 2022 01:20 PM",
+    totalAmount: "$99.99",
+    status: "Paid",
+    address: "404 Oakwood Lane, Parkville",
+    orderItems: ["Product F", "Product G"],
+  },
+  {
+    orderId: "#3206",
+    name: "Daniel Smith",
+    date: "October 7, 2022 05:45 PM",
+    totalAmount: "$67.50",
+    status: "Shipped",
+    address: "505 Pinecrest Avenue, Grove City",
+    orderItems: ["Product H", "Product I", "Product J"],
+  },
 ];
 
 export default function Orders() {
@@ -100,10 +137,10 @@ export default function Orders() {
           <span className="font-bold">ID</span>
           <span className="font-bold">Customer</span>
           <span className="font-bold">Date</span>
-          <span className="font-bold">Total Amount</span>
+          <span className="font-bold">Amount</span>
           <span className="font-bold">Address</span>
           <span className="font-bold">Status</span>
-          <span className="font-bold">Actions</span>
+          <span className="font-bold">&nbsp;</span>
           {/* TABLE ROWS */}
           {ordersData.map((order) => (
             <>
@@ -111,7 +148,7 @@ export default function Orders() {
               <p className="pl-4 text-lft">{order.name}</p>
               <p className="text-center">{order.date}</p>
               <p>{order.totalAmount}</p>
-              <p className="text-left">{order.address}</p>
+              <p className="pl-4 text-left">{order.address}</p>
               <p>{order.status}</p>
               <div className="mx-auto">
                 <MoreHorizontalIcon className="cursor-pointer p-1 border rounded-md border-white hover:translate-y-[-2px]" />
@@ -120,6 +157,7 @@ export default function Orders() {
           ))}
         </div>
       </div>
+      <Pagination />
     </main>
   );
 }
