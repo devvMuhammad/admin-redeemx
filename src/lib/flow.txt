@@ -1,0 +1,39 @@
+things to do right now
+
+DATABASE SCHEMA
+
+DATA TO BE USED
+- products 
+- orders
+- orderDetails
+
+DB SCHEMA
+!products table
+  name: string;
+  imageUrl?: string;
+  category: string;
+  id: string;
+  price: number;
+  status: "Active" | "Out of Stock";
+  revenue: number;
+
+!orders 
+  orderId: string; references the orderId inside the orderDetails table
+  name: string;
+  date: string;
+  totalAmount: string;
+  status: string;
+  address: string;
+  orderItems?: string[];
+
+!orderDetails (each one here is an ordered product so it has the same schema as the products table)
+  same as the products details
+
+USE ENOUGH DATA SO THAT IT CAN BE DISPLAYED ON THE CHARTS
+
+AFTER SETUP 
+
+- do basic data fetching
+- implement the image upload while 
+        - creating a new product
+        - editing an existing products
