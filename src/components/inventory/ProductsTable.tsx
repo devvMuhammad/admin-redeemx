@@ -5,8 +5,9 @@ import { dummyProducts } from "./DummyProducts";
 import { Button } from "../ui/button";
 import { useSelectDelete } from "@/hooks/useSelectDelete";
 import Pagination from "./Pagination";
+import { products } from "@prisma/client";
 
-export default function ProductsTable() {
+export default function ProductsTable({ products }: { products: products[] }) {
   const {
     checkedBoxes,
     checkedNum,
@@ -19,7 +20,7 @@ export default function ProductsTable() {
     <div className="overflow-x-auto space-y-2">
       <div className="min-w-[700px] border border-gray-600 pb-4 rounded-xl header product-rows grid gap-y-4 gap-x-2 md:gap-x-0 grid-cols-[auto_auto_3fr_1fr_1fr_1fr_1fr_1fr_0.5fr] justify-center items-center text-center overflow-x-auto ">
         <ProductsHeader />
-        {dummyProducts.map((product, i) => (
+        {products.map((product, i) => (
           <ProductRow
             product={product}
             index={i}

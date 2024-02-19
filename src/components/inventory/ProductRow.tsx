@@ -2,15 +2,15 @@ import { Inter } from "next/font/google";
 import Badge from "../ui/Badge";
 import { Edit2Icon, MoreHorizontalIcon } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
-import { Product } from "./DummyProducts";
 import { memo } from "react";
+import { products } from "@prisma/client";
 
 const inter = Inter({ weight: "400", style: "normal" });
 
 const RemainingProductRows = memo(function RemainingProductRows({
   product,
 }: {
-  product: Product;
+  product: products;
 }) {
   return (
     <>
@@ -37,7 +37,7 @@ const RemainingProductRows = memo(function RemainingProductRows({
   );
 });
 type ProductRowProps = {
-  product: Product;
+  product: products;
   index: number;
   addItemToDelete: (i: number) => void;
   removeItemToDelete: (i: number) => void;
