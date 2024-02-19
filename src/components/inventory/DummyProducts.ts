@@ -1,11 +1,19 @@
 export type Product = {
   name: string;
+  imageUrl?: string;
   category: string;
   id: string;
   price: number;
   status: "Active" | "Out of Stock";
   revenue: number;
 };
+
+/*
+things to do today
+- setup prisma with elephantsql
+- use introspection and migration
+- query the data from the database and display it
+*/
 
 export const dummyProducts: Product[] = [
   {

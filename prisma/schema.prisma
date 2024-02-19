@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model products {
+  id       String  @id @default(dbgenerated("generate_uuid(10)"))
+  name     String  @unique
+  imageurl String?
+  category String  @db.VarChar(30)
+  price    Int
+  status   String?
+  revenue  Int
+}
