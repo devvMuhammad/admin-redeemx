@@ -1,11 +1,20 @@
 "use client";
-import CategorySelect from "../ui/CategorySelect";
 import { z } from "zod";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const categories = ["All", "Laptops", "Mobiles", "Gift Cards", "Accessories"];
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Product Name is required" }),
@@ -23,16 +32,18 @@ export default function NewProductForm() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
-  function submitHandler(data: FormSchema) {
-    // e.
+  function submitHandler({ name }: FormSchema) {
+    console.log(name);
   }
+  console.log(errors);
   return (
     <form
-      onSubmit={handleSubmit(submitHandler)}
+      onSubmit={handleSubmit(submitHandler, (error) => console.log(error))}
       className="flex flex-col gap-6"
     >
       <div className="space-y-2">
@@ -91,10 +102,32 @@ export default function NewProductForm() {
           <Label className="text-sm text-right" htmlFor="category">
             Category
           </Label>
-          <CategorySelect />
+          <Controller
+            name="category"
+            control={control}
+            defaultValue="All"
+            render={({ field: { value, onChange } }) => (
+              <Select defaultValue="All" value={value} onValueChange={onChange}>
+                <SelectTrigger className="border w-[180px]">
+                  <SelectValue placeholder="Select Category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {categories.map((category) => (
+                      <SelectItem key={category} value={category}>
+                        {category}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            )}
+          />
         </div>
       </div>
-      <Button className="self-end font-bold">Add Product</Button>
+      <Button type="submit" className="self-end font-bold">
+        Add Product
+      </Button>
     </form>
   );
 }
