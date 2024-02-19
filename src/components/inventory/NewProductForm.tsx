@@ -13,6 +13,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useState } from "react";
+import { addProduct } from "@/lib/helpers";
 
 const categories = ["All", "Laptops", "Mobiles", "Gift Cards", "Accessories"];
 
@@ -29,6 +31,7 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 export default function NewProductForm() {
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -37,10 +40,17 @@ export default function NewProductForm() {
   } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
-  function submitHandler({ name }: FormSchema) {
-    console.log(name);
+  async function submitHandler(formData: FormSchema) {
+    setLoading(true);
+    try {
+      const response = await addProduct(formData);
+      console.log(response);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   }
-  console.log(errors);
   return (
     <form
       onSubmit={handleSubmit(submitHandler, (error) => console.log(error))}
@@ -125,8 +135,8 @@ export default function NewProductForm() {
           />
         </div>
       </div>
-      <Button type="submit" className="self-end font-bold">
-        Add Product
+      <Button disabled={loading} type="submit" className="self-end font-bold">
+        {loading ? "Loading..." : "Add Product"}
       </Button>
     </form>
   );

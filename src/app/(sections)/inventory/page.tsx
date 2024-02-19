@@ -6,6 +6,7 @@ const prisma = new PrismaClient();
 
 export default async function Inventory() {
   const products = await prisma.products.findMany();
+  console.log(products);
   return (
     <section className="space-y-4">
       <ProductControls />
