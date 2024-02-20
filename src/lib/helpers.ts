@@ -65,7 +65,7 @@ export async function editProduct({
   }
 }
 
-export async function deleteProduct({ ids }: { ids: string[] }) {
+export async function deleteProduct(ids: string[]) {
   try {
     const response = await prisma.products.deleteMany({
       where: {
