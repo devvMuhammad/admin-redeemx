@@ -145,8 +145,8 @@ export default function Orders() {
           {ordersData.map((order) => (
             <>
               <p className="font-medium">{order.orderId}</p>
-              <p className="pl-4 text-lft">{order.name}</p>
-              <p className="text-center">{order.date}</p>
+              <p className="pl-4 text-center">{order.name}</p>
+              <p className="text-left">{order.date}</p>
               <p>{order.totalAmount}</p>
               <p className="pl-4 text-left">{order.address}</p>
               <p>{order.status}</p>
