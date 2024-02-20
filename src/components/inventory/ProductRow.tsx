@@ -1,9 +1,9 @@
 import { Inter } from "next/font/google";
 import Badge from "../ui/Badge";
-import { Edit2Icon, MoreHorizontalIcon } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
 import { memo } from "react";
 import { products } from "@prisma/client";
+import EditProduct from "./EditProduct";
 
 const inter = Inter({ weight: "400", style: "normal" });
 
@@ -31,7 +31,13 @@ const RemainingProductRows = memo(function RemainingProductRows({
       </div>
       <p className={`${inter.className}`}>{product.revenue.toFixed(2)}</p>
       <div className="mx-auto">
-        <Edit2Icon className="cursor-pointer p-1 border rounded-md border-white hover:translate-y-[-2px]" />
+        <EditProduct
+          id={product.id}
+          name={product.name}
+          category={product.category}
+          price={product.price}
+          stock={0}
+        />
       </div>
     </>
   );

@@ -1,8 +1,6 @@
 "use server";
-import { PrismaClient, products as Product } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../prisma/client";
 
 export async function addProduct({
   name,
@@ -31,4 +29,38 @@ export async function addProduct({
     return { success: false, message: err };
   }
   // if(response.)
+}
+
+export async function editProduct({
+  id,
+  name,
+  category,
+  price,
+}: {
+  id: string;
+  name: string;
+  category: string;
+  price: number;
+}) {
+  try {
+    const response = await prisma.products.update({
+      where: {
+        id,
+      },
+      data: {
+        name,
+        category,
+        price,
+        imageurl: "dummy-url",
+        revenue: 0,
+        status: "Active",
+      },
+    });
+    console.log(response);
+    revalidatePath("/inventory");
+    return { success: true, message: "Product edited successfully!" };
+  } catch (err) {
+    console.error(err);
+    return { success: false, message: err };
+  }
 }
