@@ -45,8 +45,8 @@ const RemainingProductRows = memo(function RemainingProductRows({
 type ProductRowProps = {
   product: products;
   index: number;
-  addItemToDelete: (i: number) => void;
-  removeItemToDelete: (i: number) => void;
+  addItemToDelete: (id: string) => void;
+  removeItemToDelete: (id: string) => void;
   checked: boolean;
 };
 
@@ -64,7 +64,9 @@ export default function ProductRow({
           className="border border-white"
           checked={checked}
           onCheckedChange={(checked) =>
-            checked ? addItemToDelete(index) : removeItemToDelete(index)
+            checked
+              ? addItemToDelete(product.id)
+              : removeItemToDelete(product.id)
           }
         />
       </div>

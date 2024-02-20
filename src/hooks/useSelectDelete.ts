@@ -1,27 +1,26 @@
 import { useState } from "react";
 
 export function useSelectDelete() {
-  const [checkedBoxes, setCheckedBoxes] = useState<number[]>(() =>
-    Array.from(Array(5), () => 0)
-  );
+  const [checkedBoxes, setCheckedBoxes] = useState<string[]>([]);
   const checkedNum: number = checkedBoxes.reduce((acc, elm) => {
-    if (elm === 1) acc++;
+    if (elm) acc++;
     return acc;
-  });
-  const addItem = (i: number) =>
+  }, 0);
+  const addItem = (id: string) =>
     setCheckedBoxes((prev) => {
       const copy = [...prev];
-      copy[i] = 1;
+      copy.push(id);
+
       return copy;
     });
-  const removeItem = (i: number) =>
+  const removeItem = (id: string) =>
     setCheckedBoxes((prev) => {
-      const copy = [...prev];
-      copy[i] = 0;
+      let copy = [...prev];
+      copy = copy.filter((elm) => elm !== id);
       return copy;
     });
-  const selectAll = () => setCheckedBoxes(Array.from(Array(10), () => 1));
-  const unselectAll = () => setCheckedBoxes(Array.from(Array(10), () => 0));
+  const selectAll = (allIds: string[]) => setCheckedBoxes(allIds);
+  const unselectAll = () => setCheckedBoxes([]);
   return {
     checkedBoxes,
     checkedNum,
