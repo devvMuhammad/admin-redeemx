@@ -64,3 +64,21 @@ export async function editProduct({
     return { success: false, message: err };
   }
 }
+
+export async function deleteProduct({ ids }: { ids: string[] }) {
+  try {
+    const response = await prisma.products.deleteMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
+    });
+    console.log(response);
+    revalidatePath("/inventory");
+    return { success: true, message: "Product deleted successfully!" };
+  } catch (err) {
+    console.error(err);
+    return { success: false, message: err };
+  }
+}
