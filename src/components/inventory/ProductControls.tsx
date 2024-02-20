@@ -3,7 +3,7 @@ import CategorySelect from "../ui/CategorySelect";
 import SearchInput from "../ui/SearchInput";
 import SortSelect from "../ui/SortSelect";
 import { Button } from "../ui/button";
-import NewProduct from "./NewProduct";
+import NewProduct from "./add/NewProduct";
 
 const inter = Inter({ weight: ["400", "600"], style: "normal" });
 

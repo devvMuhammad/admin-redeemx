@@ -6,7 +6,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import NewProductForm from "./NewProductForm";
 import { Inter } from "next/font/google";
 

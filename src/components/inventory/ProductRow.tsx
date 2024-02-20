@@ -3,7 +3,7 @@ import Badge from "../ui/Badge";
 import { Checkbox } from "../ui/checkbox";
 import { memo } from "react";
 import { products } from "@prisma/client";
-import EditProduct from "./EditProduct";
+import EditProduct from "./edit/EditProduct";
 
 const inter = Inter({ weight: "400", style: "normal" });
 
