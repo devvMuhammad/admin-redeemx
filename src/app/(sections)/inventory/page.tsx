@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import ProductControls from "@/components/inventory/ProductControls";
 import ProductsTable from "@/components/inventory/ProductsTable";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../../../prisma/client";
 
 export default async function Inventory() {
   const products = await prisma.products.findMany();
