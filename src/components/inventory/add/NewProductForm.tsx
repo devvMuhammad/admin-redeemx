@@ -1,8 +1,8 @@
 "use client";
 import { z } from "zod";
-import { Button } from "../../ui/button";
-import { Input } from "../../ui/input";
-import { Label } from "../../ui/label";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { addProduct } from "@/lib/helpers";
 
 const categories = ["All", "Laptops", "Mobiles", "Gift Cards", "Accessories"];
@@ -26,24 +26,79 @@ const formSchema = z.object({
     .positive("Price must be positive")
     .min(1, { message: "Price is required" }),
   stock: z.number().min(1, { message: "Initial stock is required" }),
+  image: z.string().min(1, { message: "Image is required" }),
 });
 
 type FormSchema = z.infer<typeof formSchema>;
 
 export default function NewProductForm() {
   const [loading, setLoading] = useState(false);
+  const [fileName, setFileName] = useState("");
+  const fileRef = useRef<HTMLInputElement | null>(null);
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
+    setError,
+    setValue,
   } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      // in order to get the custom error message as initially the image field is null
+      image: "",
+    },
   });
+
+  function validateFile(image?: File | null):
+    | {
+        valid: false;
+        message: string;
+      }
+    | { valid: true; name: string } {
+    if (!image) return { valid: false, message: "Image upload is required" };
+
+    if (image.size > 10 ** 8)
+      return { valid: false, message: "Image size must not exceed 1MB" };
+
+    const allowedTypes = ["jpeg", "jpg", "png"];
+
+    console.log(image.name);
+
+    if (!allowedTypes.some((elm) => image.name.endsWith(elm)))
+      return { valid: false, message: "Invalid Image type" };
+
+    return { valid: true, name: image.name };
+  }
+
+  async function getBase64URL() {
+    return new Promise((resolve, reject) => {
+      if (!fileRef.current?.files) {
+        reject("File is missing");
+        return;
+      }
+      const file = fileRef.current.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        // uploadImageWithBuffer(reader.result as string, formData.category);
+        resolve(reader.result);
+      };
+    });
+  }
+
   async function submitHandler(formData: FormSchema) {
+    // console.log(
+    //   validateFile(fileRef.current?.files && fileRef.current?.files[0])
+    // );
+    // console.log(formData);
     setLoading(true);
+
     try {
-      const response = await addProduct(formData);
+      // console.log(response);
+      // uploadImageWithBuffer(reader.result as string, formData.category);
+      const { name, category, price, image } = formData;
+      const response = await addProduct({ name, category, price, image });
       console.log(response);
     } catch (err) {
       console.error(err);
@@ -89,6 +144,8 @@ export default function NewProductForm() {
             </p>
           )}
         </div>
+
+        {/* !FILE INPUT WILL BE WRITTEN HERE */}
         <div className="flex flex-col gap-1">
           <div className="grid items-center grid-cols-[1fr_3fr] gap-x-4">
             <Label className="text-sm text-right" htmlFor="stock">
@@ -102,9 +159,57 @@ export default function NewProductForm() {
               {...register("stock", { valueAsNumber: true })}
             />
           </div>
-          {errors.stock && (
+        </div>
+        <div className="flex flex-col gap-1">
+          <div className="grid items-center grid-cols-[1fr_3fr] gap-x-4">
+            <input
+              onChange={async () => {
+                // reset the file error message
+                setError("image", {
+                  type: "manual",
+                  message: "",
+                });
+                if (fileRef.current?.files) {
+                  // console.log(fileRef.current.files[0]);
+                  const result = validateFile(fileRef.current.files[0]);
+                  if (!result.valid) {
+                    setError("image", {
+                      type: "manual",
+                      message: result.message,
+                    });
+                    return;
+                  }
+                  //! if file valid, then set the value of image as the base64url
+                  const imagebase64URL = await getBase64URL();
+                  setValue("image", imagebase64URL as string);
+                  setFileName(fileRef.current?.files[0].name);
+                } else console.log("No file exists  ");
+              }}
+              type="file"
+              id="fileInput"
+              name="file"
+              hidden
+              accept=".jpg, .jpeg, .png"
+              ref={fileRef}
+            />
+            <Label className="text-sm text-right">Image</Label>
+            <div className="grid grid-cols-[auto_1fr] gap-x-2 items-end">
+              <Label
+                htmlFor="fileInput"
+                className="text-sm border border-white p-1 rounded-md text-center hover:bg-white hover:text-black tranistion-all duration-100 ease-in cursor-pointer"
+              >
+                Choose an Image
+              </Label>
+              {fileName && (
+                <span className="text-sm overflow-x-hidden overflow-y-hidden text-nowrap overflow-ellipsis">
+                  {fileName}
+                </span>
+              )}
+            </div>
+          </div>
+          {errors.image && (
             <p className="text-sm text-red-500 mx-auto">
-              {errors.stock.message}
+              {errors.image.message}
             </p>
           )}
         </div>
