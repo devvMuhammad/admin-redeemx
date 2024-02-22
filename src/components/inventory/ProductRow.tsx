@@ -4,6 +4,7 @@ import { Checkbox } from "../ui/checkbox";
 import { memo } from "react";
 import { products } from "@prisma/client";
 import EditProduct from "./edit/EditProduct";
+import { CldImage } from "next-cloudinary";
 
 const inter = Inter({ weight: "400", style: "normal" });
 
@@ -15,8 +16,21 @@ const RemainingProductRows = memo(function RemainingProductRows({
   return (
     <>
       {" "}
-      <div className="h-12 w-12 bg-gray-500 rounded-md mx-2"></div>
-      <p className={`${inter.className} flex gap-2`}>{product.name}</p>
+      {/* <div className="h-12 w-12 bg-gray-500 rounded-md mx-2"></div> */}
+      {product?.imageurl === "dummy-url" || !product.imageurl ? (
+        <div className="h-12 w-12 bg-gray-500 rounded-md mx-2"></div>
+      ) : (
+        // <Cloudina
+        <CldImage
+          width={75}
+          height={200}
+          src={product.imageurl as string}
+          alt="Macbook image"
+          // sizes=""
+          className="rounded-md"
+        />
+      )}
+      <p className={`${inter.className} flex gap-3`}>{product.name}</p>
       <p className={`${inter.className}`}>{product.category}</p>
       <p className={`${inter.className}`}>{product.id}</p>
       <p className={`${inter.className}`}>${product.price.toFixed(2)}</p>
