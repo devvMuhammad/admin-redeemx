@@ -5,6 +5,7 @@ import { useSelectDelete } from "@/hooks/useSelectDelete";
 import Pagination from "./Pagination";
 import { products } from "@prisma/client";
 import DeleteProduct from "./delete/DeleteProduct";
+import { CldImage } from "next-cloudinary";
 
 export default function ProductsTable({ products }: { products: products[] }) {
   const {
