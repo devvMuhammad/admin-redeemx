@@ -20,8 +20,7 @@ export default function SortSelect() {
         <SelectGroup>
           <SelectItem value="price.1">Price: Low to High</SelectItem>
           <SelectItem value="price.-1">Price: High to Low</SelectItem>
-          <SelectItem value="date.1">Newest Arrivals</SelectItem>
-          <SelectItem value="sold.1">Best Sellers</SelectItem>
+          <SelectItem value="time.1">Most Recent</SelectItem>
           <SelectItem value="name.1">A-Z</SelectItem>
           <SelectItem value="name.-1">Z-A</SelectItem>
         </SelectGroup>
