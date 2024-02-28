@@ -17,19 +17,21 @@ const RemainingProductRows = memo(function RemainingProductRows({
     <>
       {" "}
       {/* <div className="h-12 w-12 bg-gray-500 rounded-md mx-2"></div> */}
-      {product?.imageurl === "dummy-url" || !product.imageurl ? (
-        <div className="h-12 w-12 bg-gray-500 rounded-md mx-2"></div>
-      ) : (
-        // <Cloudina
-        <CldImage
-          width={75}
-          height={200}
-          src={product.imageurl as string}
-          alt="Macbook image"
-          // sizes=""
-          className="rounded-md"
-        />
-      )}
+      <div className="mr-4">
+        {product?.imageurl === "dummy-url" || !product.imageurl ? (
+          <div className="h-12 w-12 bg-gray-500 rounded-md mx-2"></div>
+        ) : (
+          // <Cloudina
+          <CldImage
+            width={75}
+            height={200}
+            src={product.imageurl as string}
+            alt="Macbook image"
+            // sizes=""
+            className="rounded-md"
+          />
+        )}
+      </div>
       <p className={`${inter.className} flex gap-3`}>{product.name}</p>
       <p className={`${inter.className}`}>{product.category}</p>
       <p className={`${inter.className}`}>{product.id}</p>
