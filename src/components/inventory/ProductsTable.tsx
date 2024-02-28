@@ -5,9 +5,15 @@ import { useSelectDelete } from "@/hooks/useSelectDelete";
 import Pagination from "./Pagination";
 import { products } from "@prisma/client";
 import DeleteProduct from "./delete/DeleteProduct";
-import { CldImage } from "next-cloudinary";
+// import { CldImage } from "next-cloudinary";
 
-export default function ProductsTable({ products }: { products: products[] }) {
+export default function ProductsTable({
+  products,
+  numberOfProducts,
+}: {
+  products: products[];
+  numberOfProducts: number;
+}) {
   const {
     checkedBoxes,
     checkedNum,
@@ -16,7 +22,6 @@ export default function ProductsTable({ products }: { products: products[] }) {
     selectAll,
     unselectAll,
   } = useSelectDelete();
-
   const allIds = products.reduce((acc: string[], elm) => {
     acc.push(elm.id);
     return acc;
@@ -37,7 +42,10 @@ export default function ProductsTable({ products }: { products: products[] }) {
           />
         ))}
       </div>
-      <Pagination />
+      <Pagination
+        numberOfProducts={numberOfProducts}
+        currentProducts={products.length}
+      />
       <DeleteProduct
         allIds={allIds}
         checkedBoxes={checkedBoxes}
