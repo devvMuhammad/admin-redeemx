@@ -48,9 +48,11 @@ export default function Pagination({
   return (
     <div className="flex items-center justify-between p-2 text-lg rounded-lg">
       <h1>
-        Showing <span className="font-bold">1</span> to{" "}
+        Showing{" "}
+        <span className="font-bold">{(currentPage - 1) * perPage + 1}</span> to{" "}
         <span className="font-bold">
-          {currentProducts < 5 ? currentProducts : 5}
+          {(currentPage - 1) * perPage +
+            (currentProducts < 5 ? currentProducts : 5)}
         </span>{" "}
         of <span className="font-bold">{numberOfProducts}</span> Results
       </h1>
