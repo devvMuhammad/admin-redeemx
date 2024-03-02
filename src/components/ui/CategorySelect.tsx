@@ -8,32 +8,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import useChangeSearchParamsSetup from "@/hooks/useChangeSearchParamsSetup";
 import { createQueryStringFunction } from "@/lib/utils";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useTransition } from "react";
 
 const categories = ["All", "Laptops", "Mobiles", "Gift Cards", "Accessories"];
 
 export default function CategorySelect() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
-  const createQueryString = useCallback(createQueryStringFunction, [
-    searchParams,
-  ]);
+  const [isPending, startTransition] = useTransition();
+  const { searchParams, router, pathname, createQueryString } =
+    useChangeSearchParamsSetup();
 
   const currentCategory = searchParams.get("category") || "All";
 
-  // const [category, setCategory] = useState(currentCategory);
-
   return (
     <Select
+      disabled={isPending}
       defaultValue="All"
       value={currentCategory}
       onValueChange={(val) => {
-        router.push(
-          pathname + "?" + createQueryString("category", val, searchParams)
-        );
+        startTransition(() => {
+          router.push(
+            pathname + "?" + createQueryString("category", val, searchParams)
+          );
+        });
       }}
     >
       <SelectTrigger className="border w-[180px]">

@@ -7,22 +7,36 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
+import useChangeSearchParamsSetup from "@/hooks/useChangeSearchParamsSetup";
+import { useTransition } from "react";
 
 export default function SortSelect() {
-  const [option, setOption] = useState("name.1");
+  const [isPending, startTransition] = useTransition();
+  const { searchParams, pathname, router, createQueryString } =
+    useChangeSearchParamsSetup();
+  const currentSort = searchParams.get("sort") || "name.asc";
   return (
-    <Select value={option} onValueChange={(value) => setOption(value)}>
+    <Select
+      disabled={isPending}
+      value={currentSort}
+      onValueChange={(value) =>
+        startTransition(() => {
+          router.push(
+            pathname + "?" + createQueryString("sort", value, searchParams)
+          );
+        })
+      }
+    >
       <SelectTrigger className="w-[170px]">
         <SelectValue placeholder="Sort by" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value="price.1">Price: Low to High</SelectItem>
-          <SelectItem value="price.-1">Price: High to Low</SelectItem>
-          <SelectItem value="time.1">Most Recent</SelectItem>
-          <SelectItem value="name.1">A-Z</SelectItem>
-          <SelectItem value="name.-1">Z-A</SelectItem>
+          <SelectItem value="price.asc">Price: Low to High</SelectItem>
+          <SelectItem value="price.desc">Price: High to Low</SelectItem>
+          {/* <SelectItem value="time.1">Most Recent</SelectItem> */}
+          <SelectItem value="name.asc">A-Z</SelectItem>
+          <SelectItem value="name.desc">Z-A</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
