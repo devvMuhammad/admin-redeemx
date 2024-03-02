@@ -6,6 +6,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Edit2Icon } from "lucide-react";
 import EditProductForm from "./EditProductForm";
 
@@ -27,7 +33,16 @@ export default function EditProduct({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Edit2Icon className="cursor-pointer p-1 border rounded-md border-white hover:translate-y-[-2px]" />
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Edit2Icon className="cursor-pointer p-1 border rounded-md border-white hover:translate-y-[-2px]" />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Edit</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </DialogTrigger>
       <DialogContent className="bg-black text-white">
         <DialogHeader className="text-xl mb-4">
