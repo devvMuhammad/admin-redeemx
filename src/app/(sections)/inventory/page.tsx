@@ -7,20 +7,21 @@ import { Suspense } from "react";
 
 type searchParams = {
   name: string;
-  search: string;
+  // search: string;
   category: string;
-  price: string;
   page: number;
+  sort: `${string}.${"asc" | "desc"}`;
 };
 
 export default async function Inventory({
-  searchParams: { name, search, category, price, page },
+  searchParams: { name, category, page, sort },
 }: {
   searchParams: searchParams;
 }) {
   const { products, numberOfProducts } = await getProducts({
     category,
     page,
+    sort,
   });
   console.log({ products, numberOfProducts });
   return (
