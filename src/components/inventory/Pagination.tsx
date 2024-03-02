@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 import { useCallback, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import Spinner from "../ui/spinner";
 
 export default function Pagination({
   currentProducts,
@@ -17,7 +18,8 @@ export default function Pagination({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   let currentPage = Number(searchParams.get("page") || 1);
-  const [isPending, startTransition] = useTransition();
+  const [isPendingNext, startTransitionNext] = useTransition();
+  const [isPendingPrev, startTransitionPrev] = useTransition();
 
   const createQueryString = useCallback(
     (key: string, value: string): string => {
@@ -30,7 +32,7 @@ export default function Pagination({
 
   function nextPage() {
     currentPage++;
-    startTransition(() => {
+    startTransitionNext(() => {
       router.push(
         pathname + "?" + createQueryString("page", String(currentPage))
       );
@@ -38,7 +40,7 @@ export default function Pagination({
   }
   function prevPage() {
     currentPage--;
-    startTransition(() => {
+    startTransitionPrev(() => {
       router.push(
         pathname + "?" + createQueryString("page", String(currentPage))
       );
@@ -60,17 +62,33 @@ export default function Pagination({
         <Button
           onClick={prevPage}
           className="text-sm"
-          disabled={!currentPage || +currentPage === 1 || isPending}
+          disabled={!currentPage || +currentPage === 1 || isPendingPrev}
         >
-          <ArrowLeft />
-          Previous
+          {isPendingPrev ? (
+            <>
+              Loading <Spinner size="xs" className="bg-white text-white ml-2" />
+            </>
+          ) : (
+            <>
+              Previous <ArrowLeft />
+            </>
+          )}
         </Button>
         <Button
           onClick={nextPage}
           className="text-sm"
-          disabled={isPending || currentPage >= numberOfPages}
+          // disabled={isPending || currentPage >= numberOfPages}
+          disabled={currentPage >= numberOfPages || isPendingNext}
         >
-          Next <ArrowRight />
+          {isPendingNext ? (
+            <>
+              Loading <Spinner size="xs" className="bg-white ml-2" />
+            </>
+          ) : (
+            <>
+              Next <ArrowRight />
+            </>
+          )}
         </Button>
       </div>
     </div>
