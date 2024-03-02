@@ -33,7 +33,7 @@ export default function EditProduct({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <TooltipProvider>
+        <TooltipProvider delayDuration={0}>
           <Tooltip>
             <TooltipTrigger asChild>
               <Edit2Icon className="cursor-pointer p-1 border rounded-md border-white hover:translate-y-[-2px]" />
