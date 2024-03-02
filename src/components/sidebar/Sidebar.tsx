@@ -26,7 +26,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="hidden lg:flex py-8 flex-col gap-10 items-center border-r border-solid border-slate-400">
+    <div className="hidden lg:flex py-8 flex-col gap-10 items-center border-r border-solid border-zinc-800">
       {/* HEADING */}
       {/* <h1 className="font-extrabold text-4xl tracking-tighter">RedeemX</h1> */}
       <Heading>RedeemX</Heading>
