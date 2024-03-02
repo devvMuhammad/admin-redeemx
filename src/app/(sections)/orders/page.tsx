@@ -1,4 +1,11 @@
 import Pagination from "@/components/inventory/Pagination";
+import Badge from "@/components/ui/Badge";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { MoreHorizontalIcon } from "lucide-react";
 import { Inter } from "next/font/google";
 
@@ -12,7 +19,7 @@ interface Order {
   name: string;
   date: string;
   totalAmount: string;
-  status: string;
+  status: "Shipped" | "Paid" | "Unfulfilled";
   address: string;
   orderItems?: string[];
 }
@@ -129,6 +136,11 @@ const ordersData: Order[] = [
 ];
 
 export default function Orders() {
+  const orderStatusColor = {
+    Shipped: "bg-green-600",
+    Paid: "bg-blue-600",
+    Unfulfilled: "bg-red-600",
+  };
   return (
     <main className={`${inter.className}`}>
       <div className="border border-zinc-600 shadow-sm rounded-lg px-4">
@@ -149,15 +161,34 @@ export default function Orders() {
               <p className="text-left">{order.date}</p>
               <p>{order.totalAmount}</p>
               <p className="pl-4 text-left">{order.address}</p>
-              <p>{order.status}</p>
+              {/* <p>{order.status}</p> */}
+              <div>
+                <Badge
+                  className={`border-none text-white ${
+                    orderStatusColor[order.status]
+                  }`}
+                >
+                  {order.status}
+                </Badge>
+              </div>
               <div className="mx-auto">
-                <MoreHorizontalIcon className="cursor-pointer p-1 border rounded-md border-white hover:translate-y-[-2px]" />
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <MoreHorizontalIcon className="cursor-pointer p-1 border rounded-md border-white hover:translate-y-[-2px]" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Edit</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
             </>
           ))}
         </div>
       </div>
-      <Pagination />
+      {/* WILL ADD THIS LATER TO THE ORDERS TABLE */}
+      {/* <Pagination /> */}
     </main>
   );
 }
