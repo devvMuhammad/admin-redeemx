@@ -1,7 +1,7 @@
 export default function ProductsHeader() {
   return (
     <>
-      <span className="text-left">No.</span>
+      <span className="text-left">No</span>
       <span>&nbsp;</span>
       <span>Product Name</span>
       <span>Category</span>
