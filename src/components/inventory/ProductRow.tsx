@@ -17,7 +17,7 @@ const RemainingProductRows = memo(function RemainingProductRows({
     <>
       {" "}
       {/* <div className="h-12 w-12 bg-gray-500 rounded-md mx-2"></div> */}
-      <div className="mr-4">
+      <div className="h-[100px] w-[100px] flex justify-center items-center">
         {product?.imageurl === "dummy-url" || !product.imageurl ? (
           <div className="h-12 w-12 bg-gray-500 rounded-md mx-2"></div>
         ) : (
