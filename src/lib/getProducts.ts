@@ -4,41 +4,61 @@ import { prisma } from "../../prisma/client";
 import { z } from "zod";
 
 type Props = {
-  name: string;
-  search: string;
   category: string;
   price: string;
   page: number;
+  sort: `${string}.${1 | -1}`;
 };
 
 // for now making some optional, will come on the rest later
 const PropsSchema = z.object({
-  name: z.string().min(1).optional(),
-  category: z.string().optional(),
-  search: z.string().min(1).optional(),
-  page: z.number().refine((val) => val >= 0 && val <= 5),
-  price: z.number().nonnegative().optional(),
+  category: z.string().default("All"),
+  page: z
+    .string()
+    .default("1")
+    .refine((val) => +val >= 0 && +val <= 5 && !isNaN(Number(val)))
+    .transform((val) => parseInt(val)), // transform it at the end
+  sort: z
+    .string()
+    .default("name.asc")
+    .refine(
+      (value) => {
+        const [field, direction] = value.split(".");
+        return (
+          (direction === "asc" || direction === "desc") && field.length > 0
+        );
+      },
+      {
+        message: "Sort field must be in the format `${string}.${1 | -1}`",
+      }
+    ),
 });
 
 // this is the number of products per page
 const TAKE: number = 5;
 
-export async function getProducts(args?: Partial<Props>) {
-  // const {page} = args as Props;
-
-  const page = Number(args?.page) || 1;
-  const category = args?.category || "All"; // if no category, then make it to "All"
-
+export async function getProducts(args: any) {
   //* no need to parse the category with zod
-  const parseResult = PropsSchema.safeParse({ page });
-  // console.log(`PARSE RESULT ON THE SERVER ${page} ${parseResult.success}`);
-  if (!parseResult.success) redirect("/inventory");
+  const parseResult = PropsSchema.safeParse(args);
+  // if data is of invalid shape, then redirect back
+  if (!parseResult.success) {
+    console.log(parseResult.error);
+    redirect("/inventory");
+  }
+  // const {page} = args as Props;
+  const parsed = parseResult.data;
 
+  const page = parsed.page;
+  const category = parsed.category; // if no category, then make it to "All"
+  const [sortField, sortDirection] = parsed.sort.split(".");
+  console.log(parsed);
   const [products, count] = await prisma.$transaction([
     prisma.products.findMany({
       where: category === "All" ? {} : { category: args?.category },
       orderBy: {
-        name: "asc",
+        // name:"desc",
+        // name: "asc",
+        [sortField]: sortDirection,
       },
       skip: (page - 1) * TAKE,
       take: TAKE,
