@@ -2,6 +2,7 @@
 import { redirect } from "next/navigation";
 import { prisma } from "../../prisma/client";
 import { z } from "zod";
+import { errorHandlingWrapper } from "./utils";
 
 type Props = {
   category: string;
@@ -37,36 +38,39 @@ const PropsSchema = z.object({
 // this is the number of products per page
 const TAKE: number = 5;
 
-export async function getProducts(args: any) {
-  //* no need to parse the category with zod
-  const parseResult = PropsSchema.safeParse(args);
-  // if data is of invalid shape, then redirect back
-  if (!parseResult.success) {
-    console.log(parseResult.error);
-    redirect("/inventory");
-  }
-  // const {page} = args as Props;
-  const parsed = parseResult.data;
+export const getProducts = errorHandlingWrapper(
+  async (args: any) => {
+    //* no need to parse the category with zod
+    const parseResult = PropsSchema.safeParse(args);
+    // if data is of invalid shape, then redirect back
+    if (!parseResult.success) {
+      console.log(parseResult.error);
+      redirect("/inventory");
+    }
+    // const {page} = args as Props;
+    const parsed = parseResult.data;
 
-  const page = parsed.page;
-  const category = parsed.category; // if no category, then make it to "All"
-  const [sortField, sortDirection] = parsed.sort.split(".");
-  console.log(parsed);
-  const [products, count] = await prisma.$transaction([
-    prisma.products.findMany({
-      where: category === "All" ? {} : { category: args?.category },
-      orderBy: {
-        // name:"desc",
-        // name: "asc",
-        [sortField]: sortDirection,
-      },
-      skip: (page - 1) * TAKE,
-      take: TAKE,
-    }),
-    prisma.products.count({
-      where: category === "All" ? {} : { category: args?.category },
-    }),
-  ]);
-  // const products = await ;
-  return { products, numberOfProducts: count };
-}
+    const page = parsed.page;
+    const category = parsed.category; // if no category, then make it to "All"
+    const [sortField, sortDirection] = parsed.sort.split(".");
+    console.log(parsed);
+    const [products, count] = await prisma.$transaction([
+      prisma.products.findMany({
+        where: category === "All" ? {} : { category: args?.category },
+        orderBy: {
+          // name:"desc",
+          // name: "asc",
+          [sortField]: sortDirection,
+        },
+        skip: (page - 1) * TAKE,
+        take: TAKE,
+      }),
+      prisma.products.count({
+        where: category === "All" ? {} : { category: args?.category },
+      }),
+    ]);
+    // const products = await ;
+    return { products, numberOfProducts: count };
+  },
+  { type: "db", fallbackMessage: "Failed to Fetch Products (Error Code: 400)" }
+);
