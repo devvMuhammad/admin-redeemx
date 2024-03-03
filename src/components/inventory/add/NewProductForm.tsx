@@ -31,7 +31,11 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>;
 
-export default function NewProductForm() {
+export default function NewProductForm({
+  setOpen,
+}: {
+  setOpen: (state: boolean) => void;
+}) {
   const [loading, setLoading] = useState(false);
   const [fileName, setFileName] = useState("");
   const fileRef = useRef<HTMLInputElement | null>(null);
@@ -99,7 +103,9 @@ export default function NewProductForm() {
       // uploadImageWithBuffer(reader.result as string, formData.category);
       const { name, category, price, image } = formData;
       const response = await addProduct({ name, category, price, image });
-      console.log(response);
+      // if the response is successful, then close the dialog
+      if (response) setOpen(false);
+      // console.log(response);
     } catch (err) {
       console.error(err);
     } finally {

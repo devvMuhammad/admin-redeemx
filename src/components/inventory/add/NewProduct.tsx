@@ -1,3 +1,4 @@
+"use client";
 import {
   Dialog,
   DialogContent,
@@ -9,12 +10,14 @@ import {
 import { Button } from "../../ui/button";
 import NewProductForm from "./NewProductForm";
 import { Inter } from "next/font/google";
+import { useState } from "react";
 
 const inter = Inter({ weight: ["400", "600"], style: "normal" });
 
 export default function NewProduct() {
+  const [open, setOpen] = useState(false);
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className={`${inter.className} font-bold p-4`}>New Item</Button>
       </DialogTrigger>
@@ -25,7 +28,7 @@ export default function NewProduct() {
             Enter details of the product you want to add
           </DialogDescription>
         </DialogHeader>
-        <NewProductForm />
+        <NewProductForm setOpen={setOpen} />
       </DialogContent>
     </Dialog>
   );
