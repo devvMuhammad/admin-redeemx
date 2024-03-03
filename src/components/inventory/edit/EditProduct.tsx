@@ -31,34 +31,34 @@ export default function EditProduct({
   stock,
 }: EditProductProps) {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <TooltipProvider delayDuration={0}>
-          <Tooltip>
-            <TooltipTrigger asChild>
+    <TooltipProvider delayDuration={0}>
+      <Dialog>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <DialogTrigger asChild>
               <Edit2Icon className="cursor-pointer p-1 border rounded-md border-white hover:translate-y-[-2px]" />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Edit</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </DialogTrigger>
-      <DialogContent className="bg-black text-white">
-        <DialogHeader className="text-xl mb-4">
-          <DialogTitle>Edit Product</DialogTitle>
-          <DialogDescription>
-            Edit the Product the way you want to edit the product
-          </DialogDescription>
-        </DialogHeader>
-        <EditProductForm
-          id={id}
-          name={name}
-          category={category}
-          price={price}
-          stock={0}
-        />
-      </DialogContent>
-    </Dialog>
+            </DialogTrigger>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Edit</p>
+          </TooltipContent>
+        </Tooltip>
+        <DialogContent className="bg-black text-white">
+          <DialogHeader className="text-xl mb-4">
+            <DialogTitle>Edit Product</DialogTitle>
+            <DialogDescription>
+              Edit the Product the way you want to edit the product
+            </DialogDescription>
+          </DialogHeader>
+          <EditProductForm
+            id={id}
+            name={name}
+            category={category}
+            price={price}
+            stock={0}
+          />
+        </DialogContent>
+      </Dialog>
+    </TooltipProvider>
   );
 }
