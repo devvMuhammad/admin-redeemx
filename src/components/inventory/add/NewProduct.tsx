@@ -21,7 +21,10 @@ export default function NewProduct() {
       <DialogTrigger asChild>
         <Button className={`${inter.className} font-bold p-4`}>New Item</Button>
       </DialogTrigger>
-      <DialogContent className="bg-black text-white">
+      <DialogContent
+        onEscapeKeyDown={(e) => e.preventDefault()} // dont close modal upon escs
+        className="bg-black text-white"
+      >
         <DialogHeader className="text-xl mb-4">
           <DialogTitle>New Product</DialogTitle>
           <DialogDescription>
