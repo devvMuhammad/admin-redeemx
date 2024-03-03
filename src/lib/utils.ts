@@ -1,5 +1,4 @@
 import { type ClassValue, clsx } from "clsx";
-import { useCallback } from "react";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -26,3 +25,23 @@ export const createQueryStringFunction = (
   params.set(key, value);
   return params.toString();
 };
+
+export function errorHandlingWrapper(
+  serverFunction: (...args: any[]) => Promise<any>,
+  customError: { type: "db" | string; fallbackMessage: string }
+) {
+  return async function (...args: any[]) {
+    try {
+      // Call the server-side function with provided arguments
+      const result = await serverFunction(...args);
+      return result;
+    } catch (error) {
+      // Handle the error here, you can log it or do other necessary actions
+      if (customError.type === "db") {
+        throw new Error(customError.fallbackMessage);
+      }
+      console.error("Error caught:", (error as Error).message);
+      throw new Error((error as Error).message); // Re-throw the error to maintain the original behavior
+    }
+  };
+}
