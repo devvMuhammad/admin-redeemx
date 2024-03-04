@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import { ReactNode } from "react";
 import Sidebar from "@/components/sidebar/Sidebar";
 import "./globals.css";
 import Header from "@/components/header/Header";
 
-const poppins = Poppins({
+const poppins = Inter({
   weight: ["400", "600"],
   style: "normal",
   subsets: ["latin"],
