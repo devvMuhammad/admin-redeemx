@@ -11,7 +11,7 @@ export default function HrLine({
   return (
     <div
       {...props}
-      className={cn("h-[3px] my-4 bg-zinc-800 w-full", className)}
+      className={cn("h-[2px] my-4 bg-zinc-800 w-full", className)}
     ></div>
   );
 }
