@@ -26,6 +26,14 @@ export const createQueryStringFunction = (
   return params.toString();
 };
 
+export function formatDate(date: Date): string {
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 export function errorHandlingWrapper(
   serverFunction: (...args: any[]) => Promise<any>,
   customError: { type: "db" | string; fallbackMessage: string }
