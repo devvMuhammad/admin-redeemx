@@ -7,6 +7,8 @@ import {
 } from "@/components/ui/tooltip";
 import { MoreHorizontalIcon } from "lucide-react";
 import { Inter } from "next/font/google";
+import { prisma } from "../../../../prisma/client";
+import { formatDate } from "@/lib/utils";
 
 const inter = Inter({
   weight: "400",
@@ -197,16 +199,18 @@ const ordersData: Order[] = [
   },
 ];
 
-export default function Orders() {
+export default async function Orders() {
   const orderStatusColor = {
     Shipped: "bg-green-600",
     Paid: "bg-blue-600",
     Unfulfilled: "bg-red-600",
   };
+  const orders = await prisma.orders.findMany();
+  console.log(orders);
   return (
-    <main className={`${inter.className}`}>
+    <main>
       <div className="border border-zinc-600 shadow-sm rounded-lg px-4">
-        <div className="pb-4 rounded-xl header order-rows grid grid-cols-[auto_1fr_1.5fr_auto_1.5fr_1fr_auto] gap-y-4 gap-x-2 justify-center items-center text-center overflow-x-auto">
+        <div className="pb-4 rounded-xl header order-rows grid grid-cols-[auto_1fr_1fr_auto_1.5fr_1fr_auto] gap-y-4 gap-x-2 justify-center items-center text-center overflow-x-auto">
           {/* TABLE HEADER */}
           <span className="font-bold">ID</span>
           <span className="font-bold">Customer</span>
@@ -216,18 +220,20 @@ export default function Orders() {
           <span className="font-bold">Status</span>
           <span className="font-bold">&nbsp;</span>
           {/* TABLE ROWS */}
-          {ordersData.map((order) => (
+          {orders.map((order) => (
             <>
-              <p className="font-medium">{order.orderId}</p>
+              <p className="font-medium">{order.id}</p>
               <p className="pl-4 text-center">{order.name}</p>
-              <p className="text-left">{order.date}</p>
-              <p>{order.totalAmount}</p>
+              <p className="text-left">{formatDate(order.date)}</p>
+              <p>${+order.amount}</p>
               <p className="pl-4 text-left">{order.address}</p>
               {/* <p>{order.status}</p> */}
               <div>
                 <Badge
                   className={`border-none text-white ${
-                    orderStatusColor[order.status]
+                    orderStatusColor[
+                      order.status as "Shipped" | "Paid" | "Unfulfilled"
+                    ]
                   }`}
                 >
                   {order.status}
