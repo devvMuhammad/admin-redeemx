@@ -12,6 +12,7 @@ cloudinary.config({
 
 export async function uploadImage(fileBase64: string, category: string) {
   // console.log("this is inside the server action");
+  //! make sure to add the image validation one day on the server as well
   const imageId = nanoid(20);
   const response = await cloudinary.uploader.upload(fileBase64, {
     public_id: `admin-redeemx/${category}/${imageId}`,
@@ -85,7 +86,7 @@ export async function editProduct({
     return { success: true, message: "Product edited successfully!" };
   } catch (err) {
     console.error(err);
-    return { success: false, message: err };
+    return { success: false, message: (err as Error).message };
   }
 }
 
@@ -102,7 +103,12 @@ export async function deleteProduct(ids: string[]) {
     revalidatePath("/inventory");
     return { success: true, message: "Product deleted successfully!" };
   } catch (err) {
-    console.error(err);
-    return { success: false, message: err };
+    const error = err as { code: string };
+    console.error(error.code);
+    let message;
+    if (error.code === "P2003")
+      message = "Cannot delete products when orders are attached with it";
+    else message = "Make sure you to have a stable connection";
+    return { success: false, message: message };
   }
 }
