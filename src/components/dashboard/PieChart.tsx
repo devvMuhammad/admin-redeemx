@@ -21,7 +21,7 @@ const data: ChartData<"doughnut", number[], unknown> = {
 
 export default function PieChart() {
   return (
-    <div className="space-y-2 flex flex-col items-center justify-center">
+    <div className="py-6 space-y-2 flex flex-col items-center justify-center">
       {/* <h1 className="font-bold tracking-tight text-center pl-4">
         Sales by category
       </h1> */}

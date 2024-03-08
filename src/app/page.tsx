@@ -9,10 +9,12 @@ export default function Home() {
       <div>
         <Infos />
       </div>
-      <div>
+      <div className="border rounded-xl border-gray-700">
         <PieChart />
       </div>
-      <LineChart />
+      <div className="py-4 px-2 border rounded-xl border-gray-700">
+        <LineChart />
+      </div>
       <TopProducts />
     </section>
   );
