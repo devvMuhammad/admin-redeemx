@@ -11,7 +11,7 @@ export function PriceFilter({ maximumPrice = 5000 }) {
   const { searchParams, createQueryString, pathname, router } =
     useChangeSearchParamsSetup();
 
-  const currentPrice = searchParams.get("price")?.split("-").map(Number);
+  const currentPrice = searchParams.get("amount")?.split("-").map(Number);
 
   const [priceRange, setPriceRange] = useState([
     currentPrice ? currentPrice[0] : 0,
@@ -72,7 +72,7 @@ export function PriceFilter({ maximumPrice = 5000 }) {
               pathname +
                 "?" +
                 createQueryString(
-                  "price",
+                  "amount",
                   `${priceRange[0]}-${priceRange[1]}`,
                   searchParams
                 )

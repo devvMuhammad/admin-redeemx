@@ -25,18 +25,34 @@ const orderParamsSchema = z.object({
         message: "Sort field must be in the format `${string}.${1 | -1}`",
       }
     ),
+  amount: z
+    .string()
+    .default("0-0")
+    .refine((val) => {
+      const [min, max] = val.split("-");
+      return (
+        val.includes("-") &&
+        !isNaN(Number(min)) &&
+        !isNaN(Number(max)) &&
+        Number(min) >= 0 &&
+        Number(max) >= 0 &&
+        Number(min) <= Number(max)
+      );
+    }),
 });
 
 const getOrders = errorHandlingWrapper(
   async (args: any) => {
     const result = orderParamsSchema.safeParse(args);
+
     if (!result.success) {
       console.log(result.error);
       redirect("/orders");
     }
 
-    const { page, sort: sortQuery } = result.data;
+    const { page, sort: sortQuery, amount: amountQuery } = result.data;
     const [sortField, sortDirection] = sortQuery.split(".");
+    const [min, max] = amountQuery.split("-");
 
     const [orders, count] = await prisma.$transaction([
       prisma.orders.findMany({
@@ -45,8 +61,27 @@ const getOrders = errorHandlingWrapper(
         orderBy: {
           [sortField]: sortDirection,
         },
+        where: {
+          amount:
+            amountQuery === "0-0"
+              ? { gte: 0 }
+              : {
+                  gte: Number(min),
+                  lte: Number(max),
+                },
+        },
       }),
-      prisma.orders.count({}),
+      prisma.orders.count({
+        where: {
+          amount:
+            amountQuery === "0-0"
+              ? { gte: 0 }
+              : {
+                  gte: Number(min),
+                  lte: Number(max),
+                },
+        },
+      }),
     ]);
     return { orders, numberOfOrders: count } as const;
   },
