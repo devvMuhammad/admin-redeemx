@@ -43,8 +43,9 @@ export default function ProductsTable({
         ))}
       </div>
       <Pagination
-        numberOfProducts={numberOfProducts}
-        currentProducts={products.length}
+        numberOfItems={numberOfProducts}
+        currentItems={products.length}
+        perPage={5}
       />
       <DeleteProduct
         allIds={allIds}
