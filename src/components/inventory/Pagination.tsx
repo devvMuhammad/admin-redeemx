@@ -6,14 +6,15 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Spinner from "../ui/spinner";
 
 export default function Pagination({
-  currentProducts,
-  numberOfProducts,
+  currentItems,
+  numberOfItems,
+  perPage,
 }: {
-  currentProducts: number;
-  numberOfProducts: number;
+  currentItems: number;
+  numberOfItems: number;
+  perPage: 5 | 10;
 }) {
-  const perPage = 5;
-  const numberOfPages = Math.ceil(numberOfProducts / perPage);
+  const numberOfPages = Math.ceil(numberOfItems / perPage);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -54,9 +55,9 @@ export default function Pagination({
         <span className="font-bold">{(currentPage - 1) * perPage + 1}</span> to{" "}
         <span className="font-bold">
           {(currentPage - 1) * perPage +
-            (currentProducts < 5 ? currentProducts : 5)}
+            (currentItems < perPage ? currentItems : perPage)}
         </span>{" "}
-        of <span className="font-bold">{numberOfProducts}</span> Results
+        of <span className="font-bold">{numberOfItems}</span> Results
       </h1>
       <div className="flex items-center space-x-2">
         <Button
@@ -70,7 +71,7 @@ export default function Pagination({
             </>
           ) : (
             <>
-              Previous <ArrowLeft />
+              <ArrowLeft /> Previous
             </>
           )}
         </Button>
