@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "../../prisma/client";
 import { z } from "zod";
 import { errorHandlingWrapper } from "../lib/utils";
+import { cache } from "react";
 
 type Props = {
   category: string;
@@ -17,7 +18,7 @@ const PropsSchema = z.object({
   page: z
     .string()
     .default("1")
-    .refine((val) => +val >= 0 && +val <= 5 && !isNaN(Number(val)))
+    .refine((val) => +val >= 0 && !isNaN(Number(val)))
     .transform((val) => parseInt(val)), // transform it at the end
   sort: z
     .string()
@@ -39,7 +40,7 @@ const PropsSchema = z.object({
 const TAKE: number = 5;
 
 export const getProducts = errorHandlingWrapper(
-  async (args: any) => {
+  cache(async (args: any) => {
     //* no need to parse the category with zod
     const parseResult = PropsSchema.safeParse(args);
     // if data is of invalid shape, then redirect back
@@ -70,8 +71,8 @@ export const getProducts = errorHandlingWrapper(
       }),
     ]);
     // const products = await ;
-    return { products, numberOfProducts: count };
-  },
+    return { products, numberOfProducts: count } as const;
+  }),
   {
     type: "db",
     fallbackMessage:
