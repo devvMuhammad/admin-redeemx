@@ -15,7 +15,8 @@ import {
 } from "@/components/ui/select";
 import { useState } from "react";
 import { EditProductProps } from "./EditProduct";
-import { editProduct } from "@/lib/helpers";
+import { editProduct } from "@/actions/editProduct";
+import { useToast } from "@/components/ui/use-toast";
 
 const categories = ["All", "Laptops", "Mobiles", "Gift Cards", "Accessories"];
 
@@ -37,7 +38,9 @@ export default function EditProductForm({
   category,
   price,
   stock,
-}: EditProductProps) {
+  setOpen,
+}: EditProductProps & { setOpen: (state: boolean) => void }) {
+  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -58,8 +61,19 @@ export default function EditProductForm({
     setLoading(true);
     try {
       const response = await editProduct({ id, ...formData });
+      if (!response.success) throw new Error(response.message);
+      setOpen(false);
+      toast({
+        title: "Action successful",
+        description: `Product ${id} was edited`,
+      });
       console.log(response);
     } catch (err) {
+      toast({
+        variant: "destructive",
+        title: "Failed to edit product",
+        description: "Make sure to have a stable connection",
+      });
       console.error(err);
     } finally {
       setLoading(false);
@@ -92,7 +106,7 @@ export default function EditProductForm({
             <Input
               id="price"
               defaultValue={0}
-              type="number"
+              // type="number"
               className="w-1/2 h-10"
               {...register("price", { valueAsNumber: true })}
             />

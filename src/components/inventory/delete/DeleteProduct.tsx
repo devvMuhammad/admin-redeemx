@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { deleteProduct } from "@/lib/helpers";
+import { useToast } from "@/components/ui/use-toast";
+import { deleteProduct } from "@/actions/deleteProduct";
 import { MouseEvent, useState } from "react";
 
 export default function DeleteProduct({
@@ -16,6 +17,7 @@ export default function DeleteProduct({
   selectAll: (allIds: string[]) => void;
   unselectAll: () => void;
 }) {
+  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
   async function onDelete(e: MouseEvent<HTMLButtonElement>) {
@@ -23,11 +25,22 @@ export default function DeleteProduct({
     try {
       const response = await deleteProduct(checkedBoxes);
       if (!response.success) throw new Error(response.message as string);
-
+      toast({
+        title: "Action Successfull!",
+        description: `Product${checkedBoxes.length > 1 ? "s" : ""}: ${
+          checkedBoxes.length > 1
+            ? checkedBoxes.map((id) => `#${id}`)
+            : `#${checkedBoxes[0]} were deleted`
+        }`,
+      });
       console.log(response);
       unselectAll();
     } catch (err) {
-      console.error(err);
+      toast({
+        variant: "destructive",
+        title: "Failed to delete product",
+        description: (err as Error).message,
+      });
     } finally {
       setLoading(false);
     }

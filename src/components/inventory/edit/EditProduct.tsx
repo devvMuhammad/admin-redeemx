@@ -1,3 +1,4 @@
+"use client";
 import {
   Dialog,
   DialogContent,
@@ -14,6 +15,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Edit2Icon } from "lucide-react";
 import EditProductForm from "./EditProductForm";
+import { useState } from "react";
 
 export type EditProductProps = {
   id: string;
@@ -30,9 +32,10 @@ export default function EditProduct({
   price,
   stock,
 }: EditProductProps) {
+  const [open, setOpen] = useState(false);
   return (
     <TooltipProvider delayDuration={0}>
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <Tooltip>
           <TooltipTrigger asChild>
             <DialogTrigger asChild>
@@ -56,6 +59,7 @@ export default function EditProduct({
             category={category}
             price={price}
             stock={0}
+            setOpen={setOpen}
           />
         </DialogContent>
       </Dialog>

@@ -14,7 +14,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useRef, useState } from "react";
-import { addProduct } from "@/lib/helpers";
+import { addProduct } from "@/actions/addProduct";
+import { useToast } from "@/components/ui/use-toast";
 
 const categories = ["All", "Laptops", "Mobiles", "Gift Cards", "Accessories"];
 
@@ -36,6 +37,7 @@ export default function NewProductForm({
 }: {
   setOpen: (state: boolean) => void;
 }) {
+  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [fileName, setFileName] = useState("");
   const fileRef = useRef<HTMLInputElement | null>(null);
@@ -104,9 +106,19 @@ export default function NewProductForm({
       const { name, category, price, image } = formData;
       const response = await addProduct({ name, category, price, image });
       // if the response is successful, then close the dialog
-      if (response) setOpen(false);
+      if (!response.success) throw new Error(response.message);
+      toast({
+        title: "Action Successful",
+        description: "New product was added to inventory",
+      });
+      setOpen(false);
       // console.log(response);
     } catch (err) {
+      toast({
+        variant: "destructive",
+        title: "Failed to add product",
+        description: "Make sure to have a stable connection",
+      });
       console.error(err);
     } finally {
       setLoading(false);

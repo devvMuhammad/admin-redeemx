@@ -2,7 +2,7 @@ import ProductControls from "@/components/inventory/ProductControls";
 import ProductsTable from "@/components/inventory/ProductsTable";
 import Heading from "@/components/ui/Heading";
 
-import { getProducts } from "@/lib/getProducts";
+import { getProducts } from "@/actions/getProducts";
 import { Suspense } from "react";
 
 type searchParams = {
