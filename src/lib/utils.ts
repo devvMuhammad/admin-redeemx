@@ -34,8 +34,8 @@ export function formatDate(date: Date): string {
   });
 }
 
-export function errorHandlingWrapper(
-  serverFunction: (...args: any[]) => Promise<any>,
+export function errorHandlingWrapper<T>(
+  serverFunction: (...args: any[]) => Promise<T>,
   customError: { type: "db" | string; fallbackMessage: string }
 ) {
   return async function (...args: any[]) {
@@ -46,9 +46,9 @@ export function errorHandlingWrapper(
     } catch (error) {
       // Handle the error here, you can log it or do other necessary actions
       if (customError.type === "db") {
+        console.error("Error caught:", (error as Error).message);
         throw new Error(customError.fallbackMessage);
       }
-      console.error("Error caught:", (error as Error).message);
       throw new Error((error as Error).message); // Re-throw the error to maintain the original behavior
     }
   };
