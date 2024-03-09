@@ -34,3 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# my custom files
+/.vscode
+/src/lib/test.sql
+/src/lib/flow.txt

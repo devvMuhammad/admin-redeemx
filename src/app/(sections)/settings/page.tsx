@@ -1,5 +1,5 @@
-import AppearanceForm from "@/components/orders/AppearanceForm";
-import ProfileForm from "@/components/orders/ProfileForm";
+import AppearanceForm from "@/components/settings/AppearanceForm";
+import ProfileForm from "@/components/settings/ProfileForm";
 import HrLine from "@/components/ui/hr";
 
 export default function Settings() {

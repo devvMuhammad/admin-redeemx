@@ -39,7 +39,7 @@ export default function EditProduct({
         <Tooltip>
           <TooltipTrigger asChild>
             <DialogTrigger asChild>
-              <Edit2Icon className="cursor-pointer p-1 border rounded-md border-white hover:translate-y-[-2px]" />
+              <Edit2Icon className="cursor-pointer p-1 border rounded-md border-black dark:border-white hover:translate-y-[-2px]" />
             </DialogTrigger>
           </TooltipTrigger>
           <TooltipContent>

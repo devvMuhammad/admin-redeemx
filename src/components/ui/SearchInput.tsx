@@ -63,7 +63,9 @@ export default function SearchInput() {
       >
         <ListRestartIcon className="h-8 w-8 cursor-pointer" />
       </Button>
-      {isPending && <Spinner size="sm" className="ml-2 bg-white" />}
+      {isPending && (
+        <Spinner size="sm" className="ml-2 bg-black dark:bg-white" />
+      )}
     </div>
   );
 }

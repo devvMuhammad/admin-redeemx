@@ -20,7 +20,9 @@ export default function InfoCard({
   return (
     <div className="p-5 border border-gray-700 rounded-xl">
       <div className="hidden md:flex justify-between items-center">
-        <div className="bg-gray-700 p-3 rounded-xl">{icon}</div>
+        <div className="dark:bg-gray-700 dark:border-none border border-neutral-400 p-3 rounded-xl">
+          {icon}
+        </div>
         {/* <Badge>{`+${percentage}%`}</Badge> */}
         <Badge className="text-sm font-bold">
           <ArrowUpRightIcon className="text-green-500" />

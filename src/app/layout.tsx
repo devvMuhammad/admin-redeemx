@@ -5,6 +5,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import "./globals.css";
 import Header from "@/components/header/Header";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/lib/theme-provider";
 
 const poppins = Inter({
   weight: ["400", "600"],
@@ -21,14 +22,21 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} overflow-y-hidden bg-black text-white lg:grid lg:grid-rows-1 lg:grid-cols-[1fr_5fr]`}
+        className={`${poppins.className} overflow-y-hidden dark:bg-black dark:text-white lg:grid lg:grid-rows-1 lg:grid-cols-[1fr_5fr]`}
       >
-        <Sidebar />
-        <main className="max-h-screen">
-          <Header />
-          <div className="p-6 max-h-[90vh] overflow-y-auto">{children}</div>
-        </main>
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Sidebar />
+          <main className="min-h-screen">
+            <Header />
+            <div className="p-6 max-h-[90vh] overflow-y-auto">{children}</div>
+          </main>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

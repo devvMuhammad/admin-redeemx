@@ -28,7 +28,7 @@ const RemainingProductRows = memo(function RemainingProductRows({
             src={product.imageurl as string}
             alt="Macbook image"
             // sizes=""
-            className="rounded-md"
+            className="rounded-md border p-1 border-black dark:border-none"
           />
         )}
       </div>

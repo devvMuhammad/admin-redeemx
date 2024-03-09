@@ -37,3 +37,14 @@ AFTER SETUP
 - implement the image upload while 
         - creating a new product
         - editing an existing products
+
+
+!RELATIONS BETWEEN ORDERS AND PRODUCTS 
+  - THE ORDER ITEMS 
+
+
+remaing features
+- dark mode and change font
+- dummy notifications section in the settings
+- pagination,filter and detailed view in orders section
+- user permissions, show a nice response in case of no permission

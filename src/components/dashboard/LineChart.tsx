@@ -11,6 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import Heading from "../ui/Heading";
+import { useTheme } from "next-themes";
 
 ChartJS.register(
   CategoryScale,
@@ -38,6 +39,8 @@ const months = [
 ];
 
 export default function LineChart() {
+  const { theme } = useTheme();
+  const color = theme === "dark" ? "white" : "black";
   return (
     <div className=" h-[400px] mb-4 md:mb-0 p-2 border-solid">
       <Heading className="text-2xl">Revenue Over Time</Heading>
@@ -50,9 +53,9 @@ export default function LineChart() {
               data: Array(12)
                 .fill(0)
                 .map(() => (Math.random() * 10 + 1) * 1000),
-              borderColor: "#fff",
+              borderColor: color,
               pointBackgroundColor: "black",
-              pointBorderColor: "white",
+              pointBorderColor: color,
               pointRadius: 4,
             },
           ],
@@ -68,17 +71,17 @@ export default function LineChart() {
               title: {
                 display: true,
                 text: "Months",
-                color: "white",
+                color: color,
                 font: {
                   size: 18,
                   weight: "bold",
                 },
               },
               border: {
-                color: "white",
+                color: color,
               },
               ticks: {
-                color: "white",
+                color: color,
                 font: {
                   size: 14,
                 },
@@ -89,14 +92,14 @@ export default function LineChart() {
               title: {
                 display: true,
                 text: "Revenue ($)",
-                color: "white",
+                color: color,
                 font: {
                   size: 18,
                   weight: "bold",
                 },
               },
               border: {
-                color: "white",
+                color: color,
                 dash: [6],
               },
               grid: {
@@ -107,7 +110,7 @@ export default function LineChart() {
                 tickBorderDash: [8, 8],
               },
               ticks: {
-                color: "white",
+                color: color,
                 font: {
                   size: 14,
                 },
@@ -117,7 +120,7 @@ export default function LineChart() {
           },
           plugins: {
             legend: {
-              labels: { color: "white", font: { size: 14 } },
+              labels: { color: color, font: { size: 14 } },
             },
           },
         }}

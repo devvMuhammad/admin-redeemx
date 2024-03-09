@@ -26,7 +26,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="hidden lg:flex py-8 flex-col gap-10 items-center border-r border-solid border-zinc-800">
+    <div className="hidden lg:flex py-8 flex-col gap-10 items-center border-r border-solid border-gray-200 dark:border-zinc-800">
       {/* HEADING */}
       {/* <h1 className="font-extrabold text-4xl tracking-tighter">RedeemX</h1> */}
       <Heading>RedeemX</Heading>
@@ -37,8 +37,9 @@ export default function Sidebar() {
           <Link
             key={link}
             href={`/${link}`}
-            className={`flex gap-4 px-6 rounded-md py-2 hover:bg-slate-800 transition-all duration-200 ease-in-out ${
-              pathname === `/${link}` && "bg-slate-700 hover:bg-slate-700"
+            className={`flex gap-4 px-6 rounded-md py-2 hover:bg-gray-300 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out ${
+              pathname === `/${link}` &&
+              "bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-700"
             }`}
           >
             {icon}
