@@ -39,7 +39,10 @@ const orderParamsSchema = z.object({
         Number(min) <= Number(max)
       );
     }),
+  search: z.string().default(""),
 });
+
+export type TOrdersSchema = z.infer<typeof orderParamsSchema>;
 
 const getOrders = errorHandlingWrapper(
   async (args: any) => {
@@ -50,17 +53,17 @@ const getOrders = errorHandlingWrapper(
       redirect("/orders");
     }
 
-    const { page, sort: sortQuery, amount: amountQuery } = result.data;
+    const {
+      page,
+      sort: sortQuery,
+      amount: amountQuery,
+      search: searchQuery,
+    } = result.data;
     const [sortField, sortDirection] = sortQuery.split(".");
     const [min, max] = amountQuery.split("-");
 
     const [orders, count] = await prisma.$transaction([
       prisma.orders.findMany({
-        skip: (page - 1) * TAKE,
-        take: TAKE,
-        orderBy: {
-          [sortField]: sortDirection,
-        },
         where: {
           amount:
             amountQuery === "0-0"
@@ -69,6 +72,15 @@ const getOrders = errorHandlingWrapper(
                   gte: Number(min),
                   lte: Number(max),
                 },
+          name:
+            searchQuery.length > 0
+              ? { contains: searchQuery, mode: "insensitive" }
+              : {},
+        },
+        skip: (page - 1) * TAKE,
+        take: TAKE,
+        orderBy: {
+          [sortField]: sortDirection,
         },
       }),
       prisma.orders.count({
@@ -80,6 +92,10 @@ const getOrders = errorHandlingWrapper(
                   gte: Number(min),
                   lte: Number(max),
                 },
+          name:
+            searchQuery.length > 0
+              ? { contains: searchQuery, mode: "insensitive" }
+              : {},
         },
       }),
     ]);
