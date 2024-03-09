@@ -2,6 +2,7 @@ import { errorHandlingWrapper } from "@/lib/utils";
 import { prisma } from "../../prisma/client";
 import { z } from "zod";
 import { redirect } from "next/navigation";
+import { cache } from "react";
 
 const TAKE = 10;
 
@@ -45,7 +46,7 @@ const orderParamsSchema = z.object({
 export type TOrdersSchema = z.infer<typeof orderParamsSchema>;
 
 const getOrders = errorHandlingWrapper(
-  async (args: any) => {
+  cache(async (args: any) => {
     const result = orderParamsSchema.safeParse(args);
 
     if (!result.success) {
@@ -100,7 +101,7 @@ const getOrders = errorHandlingWrapper(
       }),
     ]);
     return { orders, numberOfOrders: count } as const;
-  },
+  }),
   {
     type: "db",
     fallbackMessage:
