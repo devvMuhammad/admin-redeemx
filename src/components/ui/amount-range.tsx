@@ -30,7 +30,7 @@ export function PriceFilter({ maximumPrice = 5000 }) {
         value={priceRange}
         onValueChange={(value) => setPriceRange(value)}
       />
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-2">
         <Input
           type="number"
           inputMode="numeric"
@@ -64,7 +64,7 @@ export function PriceFilter({ maximumPrice = 5000 }) {
       {/* <div className="w-full flex justify-end"> */}
       <Button
         disabled={isPending}
-        size="sm"
+        size="icon"
         className="font-bold tracking-wide right-0 inline-flex"
         onClick={() => {
           startTransition(() => {
