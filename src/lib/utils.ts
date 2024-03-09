@@ -26,6 +26,15 @@ export const createQueryStringFunction = (
   return params.toString();
 };
 
+export const deleteQueryStringFunction = (
+  key: string,
+  searchParams: URLSearchParams
+): string => {
+  const params = new URLSearchParams(searchParams.toString());
+  params.delete(key);
+  return params.toString();
+};
+
 export function formatDate(date: Date): string {
   return date.toLocaleDateString("en-US", {
     month: "long",
@@ -45,8 +54,8 @@ export function errorHandlingWrapper<T>(
       return result;
     } catch (error) {
       // Handle the error here, you can log it or do other necessary actions
+      console.error("Error caught:", (error as Error).message);
       if (customError.type === "db") {
-        console.error("Error caught:", (error as Error).message);
         throw new Error(customError.fallbackMessage);
       }
       throw new Error((error as Error).message); // Re-throw the error to maintain the original behavior
