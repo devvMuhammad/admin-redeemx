@@ -19,7 +19,7 @@ export default function ProductControls() {
   return (
     <div className="flex justify-between items-center">
       {/* Search input */}
-      <SearchInput />
+      <span>These are the products in your inventory</span>
       <div className="flex gap-2 items-center ">
         {/* selecting category */}
         <CategorySelect />
