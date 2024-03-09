@@ -52,12 +52,20 @@ export default function Pagination({
     <div className="flex items-center justify-between p-2 text-lg rounded-lg">
       <h1>
         Showing{" "}
-        <span className="font-bold">{(currentPage - 1) * perPage + 1}</span> to{" "}
-        <span className="font-bold">
-          {(currentPage - 1) * perPage +
-            (currentItems < perPage ? currentItems : perPage)}
-        </span>{" "}
-        of <span className="font-bold">{numberOfItems}</span> Results
+        {numberOfItems > 0 ? (
+          <>
+            <span className="font-bold">{(currentPage - 1) * perPage + 1}</span>{" "}
+            to{" "}
+            <span className="font-bold">
+              {(currentPage - 1) * perPage +
+                (currentItems < perPage ? currentItems : perPage)}
+            </span>{" "}
+            of <span className="font-bold">{numberOfItems}</span>
+          </>
+        ) : (
+          <span className="font-bold">0</span>
+        )}{" "}
+        Results
       </h1>
       <div className="flex items-center space-x-2">
         <Button
