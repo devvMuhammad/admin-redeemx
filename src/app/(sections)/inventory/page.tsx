@@ -14,7 +14,7 @@ type searchParams = {
 };
 
 export default async function Inventory({
-  searchParams: { name, category, page, sort },
+  searchParams: { category, page, sort },
 }: {
   searchParams: searchParams;
 }) {
