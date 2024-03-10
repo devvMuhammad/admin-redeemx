@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from "clsx";
+import { getServerSession } from "next-auth";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -41,6 +42,28 @@ export function formatDate(date: Date): string {
     day: "numeric",
     year: "numeric",
   });
+}
+
+export function protectAction<T>(serverAction: (...args: any[]) => Promise<T>) {
+  return async function (...args: any[]) {
+    const session = await getServerSession();
+    if (!session)
+      return {
+        success: false,
+        message: "You do not have access to perform this action. Login first!",
+      };
+    return await serverAction(...args);
+  };
+  // const session = await getServerSession();
+  // if (!session)
+  //   return {
+  //     success: false,
+  //     message: "You do not have access to perform this action",
+  //   };
+  // return async function (...args: any[]) {
+  //   const result =  await serverAction(...args);
+  //   return result
+  // };
 }
 
 export function errorHandlingWrapper<T>(

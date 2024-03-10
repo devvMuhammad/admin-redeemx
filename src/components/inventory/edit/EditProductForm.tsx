@@ -72,7 +72,7 @@ export default function EditProductForm({
       toast({
         variant: "destructive",
         title: "Failed to edit product",
-        description: "Make sure to have a stable connection",
+        description: (err as Error).message,
       });
       console.error(err);
     } finally {

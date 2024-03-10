@@ -117,7 +117,7 @@ export default function NewProductForm({
       toast({
         variant: "destructive",
         title: "Failed to add product",
-        description: "Make sure to have a stable connection",
+        description: (err as Error).message,
       });
       console.error(err);
     } finally {
