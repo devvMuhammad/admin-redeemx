@@ -75,7 +75,8 @@ export default function Pagination({
         >
           {isPendingPrev ? (
             <>
-              Loading <Spinner size="xs" className="bg-white text-white ml-2" />
+              <Spinner size="xs" className="mr-2" />
+              Loading
             </>
           ) : (
             <>
@@ -91,7 +92,7 @@ export default function Pagination({
         >
           {isPendingNext ? (
             <>
-              Loading <Spinner size="xs" className="bg-white ml-2" />
+              Loading <Spinner size="xs" className=" ml-2" />
             </>
           ) : (
             <>
