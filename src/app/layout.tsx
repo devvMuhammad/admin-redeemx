@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import { ReactNode } from "react";
-import Sidebar from "@/components/sidebar/Sidebar";
 import "./globals.css";
-import Header from "@/components/header/Header";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/lib/theme-provider";
-import SessionProvider from "@/lib/session-provider";
-import { getServerSession } from "next-auth";
 
 const poppins = Inter({
   weight: ["400", "600"],
@@ -25,27 +21,18 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  const session = await getServerSession();
   return (
     <html lang="en">
       <body className={`overflow-y-hidden ${poppins.className}`}>
-        {/* <Session */}
-        <SessionProvider session={session}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {/* <Sidebar /> */}
-            {children}
-            {/* <main className="min-h-screen">
-              <Header />
-              <div className="p-6 max-h-[90vh] overflow-y-auto">{children}</div>
-            </main> */}
-            <Toaster />
-          </ThemeProvider>
-        </SessionProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
