@@ -21,7 +21,7 @@ export default function UserProfile() {
           <User2Icon className="h-10 w-10 rounded-full border" />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="p-2">
         <DropdownMenuLabel>Profile</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {session ? (
