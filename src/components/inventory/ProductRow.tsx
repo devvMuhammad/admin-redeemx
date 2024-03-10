@@ -6,7 +6,7 @@ import { products } from "@prisma/client";
 import EditProduct from "./edit/EditProduct";
 import { CldImage } from "next-cloudinary";
 
-const inter = Inter({ weight: "400", style: "normal" });
+const inter = Inter({ weight: "400", style: "normal", subsets: ["latin"] });
 
 const RemainingProductRows = memo(function RemainingProductRows({
   product,

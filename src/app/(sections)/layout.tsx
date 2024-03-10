@@ -1,6 +1,5 @@
 import Header from "@/components/header/Header";
 import Sidebar from "@/components/sidebar/Sidebar";
-import { Inter } from "next/font/google";
 import { ReactNode } from "react";
 
 export default function layout({ children }: { children: ReactNode }) {

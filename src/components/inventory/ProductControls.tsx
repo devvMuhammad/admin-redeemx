@@ -5,7 +5,11 @@ import SortSelect from "../ui/SortSelect";
 import { Button } from "../ui/button";
 import NewProduct from "./add/NewProduct";
 
-const inter = Inter({ weight: ["400", "600"], style: "normal" });
+const inter = Inter({
+  weight: ["400", "600"],
+  style: "normal",
+  subsets: ["latin"],
+});
 
 export default function ProductControls() {
   /*

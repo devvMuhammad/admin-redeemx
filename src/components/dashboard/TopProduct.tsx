@@ -2,7 +2,11 @@ import { dummyProducts } from "../inventory/DummyProducts";
 import Heading from "../ui/Heading";
 import { Inter } from "next/font/google";
 
-const inter = Inter({ weight: ["400", "600"], style: "normal" });
+const inter = Inter({
+  weight: ["400", "600"],
+  style: "normal",
+  subsets: ["latin"],
+});
 
 export default function TopProducts() {
   return (

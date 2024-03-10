@@ -5,7 +5,11 @@ import OrdersSort from "./OrdersSort";
 import PriceFilter from "../ui/amount-range";
 // import NewProduct from "./add/NewProduct";
 
-const inter = Inter({ weight: ["400", "600"], style: "normal" });
+const inter = Inter({
+  weight: ["400", "600"],
+  style: "normal",
+  subsets: ["latin"],
+});
 
 /*
   filters in the order product

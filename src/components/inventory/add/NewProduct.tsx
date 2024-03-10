@@ -12,7 +12,11 @@ import NewProductForm from "./NewProductForm";
 import { Inter } from "next/font/google";
 import { useState } from "react";
 
-const inter = Inter({ weight: ["400", "600"], style: "normal" });
+const inter = Inter({
+  weight: ["400", "600"],
+  style: "normal",
+  subsets: ["latin"],
+});
 
 export default function NewProduct() {
   const [open, setOpen] = useState(false);
