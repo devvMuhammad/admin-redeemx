@@ -36,7 +36,7 @@ const authOptions = {
   // call,
 };
 
-export const handler = NextAuth({
+const handler = NextAuth({
   ...authOptions,
   // callbacks: {
   // async jwt({ token, account }) {
