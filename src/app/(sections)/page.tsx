@@ -5,7 +5,7 @@ import TopProducts from "@/components/dashboard/TopProduct";
 
 export default function Home() {
   return (
-    <section className="grid grid-cols-1 gap-4 lg:grid-cols-[auto_1fr] overflow-y-auto">
+    <section className="grid grid-cols-1 gap-4 lg:grid-cols-[auto_1fr]">
       <div>
         <Infos />
       </div>
